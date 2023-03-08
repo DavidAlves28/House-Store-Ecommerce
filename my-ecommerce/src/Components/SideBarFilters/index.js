@@ -17,9 +17,11 @@ import {
   Center,
   Checkbox,
   Select,
+  Grid,
+  GridItem,
 
 } from '@chakra-ui/react';
-import { 
+import {
   FiMenu,
 } from 'react-icons/fi';
 import PokemonLogo from '../../assets/imgs/PokemonHeader.png'
@@ -67,17 +69,16 @@ export default function SimpleSidebar({ children }) {
 
 const SidebarContent = ({ onClose, ...rest }) => {
   const context = useContext(GlobalContext);
-  const {pokemontypesArray,tipo,onChangeTipo} = context; 
-  
+  const { pokemontypesArray, tipo, onChangeTipo, onChangeSearch, search, searchId } = context;
 
-  
+
+
   return (
     <Box
-      bg={useColorModeValue('white', 'gray.900')}
-      borderRight="1px"
-      borderRightColor={useColorModeValue('gray.200', 'gray.700')}
-      w={{ base: 'full', md: 60 }}
-      h="full"
+      bg={useColorModeValue('white', 'gray.900')}      
+      shadow={'0 5px 15px rgba(0 ,0, 0, 0.2)'}
+      w={{ base: 'full'}}
+      h={[ '100%','80%']}
       {...rest}>
 
       <Image p='5px' src={PokemonLogo} />
@@ -88,26 +89,26 @@ const SidebarContent = ({ onClose, ...rest }) => {
         <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
       </Flex>
       <Center>
-        <Input m={'0 auto'} w='70%' placeholder='Pesquisar' /><Button m={'0 auto'} colorScheme={'linkedin'} > <FaSearch /></Button>
+        <Input onChange={(e) => onChangeSearch(e)} value={search} m={'0 auto'} w='70%' placeholder='Pesquisar' />
       </Center>
       <Center my='10px' >
-      <SliderPrice  />
+        <SliderPrice />
 
       </Center>
 
-      <Center  m='10px'>
-      <Select 
-      id='tipo'
-      name='tipo'
-      onChange={(e)=>onChangeTipo(e)}
-      value={tipo}      
-       placeholder='Tipos dos pokemons'>
-      {pokemontypesArray.map((type)=>{
-        return (
-          <option key={type} value={type} >{type}</option>
-        )
-      })}
-      </Select>
+      <Center m='10px'>
+        <Select
+          id='tipo'
+          name='tipo'
+          onChange={(e) => onChangeTipo(e)}
+          value={tipo}
+          placeholder='Tipos dos pokemons'>
+          {pokemontypesArray.map((type) => {
+            return (
+              <option key={type} value={type} >{type}</option>
+            )
+          })}
+        </Select>
       </Center>
 
 
@@ -116,70 +117,77 @@ const SidebarContent = ({ onClose, ...rest }) => {
 };
 
 
-const NavItem = ({ icon, children, ...rest }) => {
+// const NavItem = ({ icon, children, ...rest }) => {
 
 
-  return (
-    <Link href="#" style={{ textDecoration: 'none' }} _focus={{ boxShadow: 'none' }}>
-      <Flex
-        align="center"
-        p="4"
-        mx="4"
-        borderRadius="lg"
-        role="group"
-        cursor="pointer"
-        _hover={{
-          bg: 'cyan.400',
-          color: 'white',
-        }}
-        {...rest}>
+//   return (
+//     <Link href="#" style={{ textDecoration: 'none' }} _focus={{ boxShadow: 'none' }}>
+//       <Flex
+//         align="center"
+//         p="4"
+//         mx="4"
+//         borderRadius="lg"
+//         role="group"
+//         cursor="pointer"
+//         _hover={{
+//           bg: 'cyan.400',
+//           color: 'white',
+//         }}
+//         {...rest}>
 
-        {icon && (
-          <Icon
-            mr="4"
-            fontSize="16"
-            _groupHover={{
-              color: 'white',
-            }}
-            as={icon}
-          />
-        )}
-        {children}
-      </Flex>
-    </Link>
-  );
-};
+//         {icon && (
+//           <Icon
+//             mr="4"
+//             fontSize="16"
+//             _groupHover={{
+//               color: 'white',
+//             }}
+//             as={icon}
+//           />
+//         )}
+//         {children}
+//       </Flex>
+//     </Link>
+//   );
+// };
 
 
 const MobileNav = ({ onOpen, ...rest }) => {
   return (
-    <Flex
+    <Grid templateColumns={'1fr'} templateRows={'22vw 1fr'} >
+
+    <GridItem  h="20vh" rowSpan={1}>
+
+    
+    <Flex  flexDir={'column'}
       ml={{ base: 0, md: 60 }}
       px={{ base: 4, md: 24 }}
-      height="22vh"
-      w={'99vw'}
+      mt='50px'
+      height="22vh"     
+      flexWrap={'wrap'}
+      w={['10vw', '99vw']}
       alignItems="center"
-      bg={useColorModeValue('white', 'gray.200')}
+      bg={useColorModeValue('white', 'blackAlpha.500')}
       borderBottomWidth="1px"
-      borderBottomColor={useColorModeValue('gray.200', 'gray.700')}
+      borderBottomColor={useColorModeValue('blackAlpha.100', 'blackAlpha.50')}
       justifyContent="flex-start"
+     
       {...rest}>
       <IconButton
         variant="outline"
         onClick={onOpen}
+        color='blackAlpha.900'
         aria-label="open menu"
         icon={<FiMenu />}
       />
-      <Flex flexDir={'column'}>
-        <Image mb={'3px'} src={PokemonLogo} />
-        <Flex>
-          <Input placeholder='Pesquisar' colorScheme={'blackAlpha'} />
-          <Button  > Pesquisar</Button>
-        </Flex>
-      </Flex>
-
-
-
     </Flex>
+      </GridItem>
+      <Image mb={'3px'} src={PokemonLogo} />
+      
+
+
+
+
+    </Grid>
   );
 };

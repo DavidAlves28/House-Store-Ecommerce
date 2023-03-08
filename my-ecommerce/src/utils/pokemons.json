@@ -1,5 +1,7 @@
 [{
     "id": "001",
+    "evolution":"1",   
+    "price": 49.99,
     "name": {
       "english": "Bulbasaur",
       "japanese": "フシギダネ",
@@ -22,6 +24,7 @@
   {
     "id": "002",
     "evolution":"2",
+    "price":99.99,
     "name": {
       "english": "Ivysaur",
       "japanese": "フシギソウ",
@@ -44,6 +47,7 @@
   {
     "id": "003",
     "evolution":"3",
+    "price":249.39,
     "name": {
       "english": "Venusaur",
       "japanese": "フシギバナ",
@@ -65,6 +69,8 @@
   },
   {
     "id": "004",
+    "evolution":"1",
+    "price": 49.99,
     "name": {
       "english": "Charmander",
       "japanese": "ヒトカゲ",
@@ -86,6 +92,7 @@
   {
     "id": "005",
     "evolution":"2",
+    "price":99.99,
     "name": {
       "english": "Charmeleon",
       "japanese": "リザード",
@@ -107,6 +114,7 @@
   {
     "id": "006",
     "evolution":"3",
+    "price":249.39,
     "name": {
       "english": "Charizard",
       "japanese": "リザードン",
@@ -128,6 +136,8 @@
   },
   {
     "id": "007",
+    "evolution":"1",
+    "price": 49.99,
     "name": {
       "english": "Squirtle",
       "japanese": "ゼニガメ",
@@ -149,6 +159,7 @@
   {
     "id": "008",
     "evolution":"2",
+    "price":99.99,
     "name": {
       "english": "Wartortle",
       "japanese": "カメール",
@@ -170,6 +181,7 @@
   {
     "id": "009",
     "evolution":"3",
+    "price":249.39,
     "name": {
       "english": "Blastoise",
       "japanese": "カメックス",
@@ -190,6 +202,8 @@
   },
   {
     "id": "010",
+    "evolution":"1",
+    "price": 49.99,
     "name": {
       "english": "Caterpie",
       "japanese": "キャタピー",
@@ -211,6 +225,7 @@
   {
     "id": "011",
     "evolution":"2",
+    "price":99.99,
     "name": {
       "english": "Metapod",
       "japanese": "トランセル",
@@ -232,6 +247,7 @@
   {
     "id": "012",
     "evolution":"3",
+    "price":249.39,
     "name": {
       "english": "Butterfree",
       "japanese": "バタフリー",
@@ -253,6 +269,8 @@
   },
   {
     "id": "013",
+    "evolution":"1",
+    "price": 49.99,
     "name": {
       "english": "Weedle",
       "japanese": "ビードル",
@@ -275,6 +293,7 @@
   {
     "id": "014",
     "evolution":"2",
+    "price":99.99,
     "name": {
       "english": "Kakuna",
       "japanese": "コクーン",
@@ -297,6 +316,7 @@
   {
     "id": "015",
     "evolution":"3",
+    "price":249.39,
     "name": {
       "english": "Beedrill",
       "japanese": "スピアー",
@@ -318,6 +338,8 @@
   },
   {
     "id": "016",
+    "evolution":"1",
+    "price": 49.99,
     "name": {
       "english": "Pidgey",
       "japanese": "ポッポ",
@@ -340,6 +362,7 @@
   {
     "id": "017",
     "evolution":"2",
+    "price":99.99,
     "name": {
       "english": "Pidgeotto",
       "japanese": "ピジョン",
@@ -362,6 +385,7 @@
   {
     "id": "018",
     "evolution":"3",
+    "price":249.39,
     "name": {
       "english": "Pidgeot",
       "japanese": "ピジョット",
@@ -383,6 +407,8 @@
   },
   {
     "id": "019",
+    "evolution":"1",
+    "price": 49.99,
     "name": {
       "english": "Rattata",
       "japanese": "コラッタ",
@@ -404,6 +430,7 @@
   {
     "id": "020",
     "evolution":"2",
+    "price":99.99,
     "name": {
       "english": "Raticate",
       "japanese": "ラッタ",
@@ -424,6 +451,8 @@
   },
   {
     "id": "021",
+    "evolution":"1",
+    "price": 49.99,
     "name": {
       "english": "Spearow",
       "japanese": "オニスズメ",
@@ -446,6 +475,7 @@
   {
     "id": "022",
     "evolution":"2",
+    "price":99.99,
     "name": {
       "english": "Fearow",
       "japanese": "オニドリル",
@@ -467,6 +497,8 @@
   },
   {
     "id": "023",
+    "evolution":"1",
+    "price": 49.99,
     "name": {
       "english": "Ekans",
       "japanese": "アーボ",
@@ -488,6 +520,7 @@
   {
     "id": "024",
     "evolution":"2",
+    "price":99.99,
     "name": {
       "english": "Arbok",
       "japanese": "アーボック",
@@ -508,6 +541,8 @@
   },
   {
     "id": "025",
+    "evolution":"1",
+    "price": 49.99,
     "name": {
       "english": "Pikachu",
       "japanese": "ピカチュウ",
@@ -529,6 +564,7 @@
   {
     "id": "026",
     "evolution":"2",
+    "price":99.99,
     "name": {
       "english": "Raichu",
       "japanese": "ライチュウ",
@@ -549,6 +585,8 @@
   },
   {
     "id": "027",
+    "evolution":"1",
+    "price": 49.99,
     "name": {
       "english": "Sandshrew",
       "japanese": "サンド",
@@ -570,6 +608,7 @@
   {
     "id": "028",
     "evolution":"2",
+    "price":99.99,
     "name": {
       "english": "Sandslash",
       "japanese": "サンドパン",
@@ -590,6 +629,8 @@
   },
   {
     "id": "029",
+    "evolution":"1",
+    "price": 49.99,
     "name": {
       "english": "Nidoran♀",
       "japanese": "ニドラン♀",
@@ -611,6 +652,7 @@
   {
     "id": "030",
     "evolution":"2",
+    "price":99.99,
     "name": {
       "english": "Nidorina",
       "japanese": "ニドリーナ",
@@ -632,6 +674,7 @@
   {
     "id": "031",
     "evolution":"3",
+    "price":249.39,
     "name": {
       "english": "Nidoqueen",
       "japanese": "ニドクイン",
@@ -653,6 +696,8 @@
   },
   {
     "id": "032",
+    "evolution":"1",
+    "price": 49.99,
     "name": {
       "english": "Nidoran♂",
       "japanese": "ニドラン♂",
@@ -674,6 +719,7 @@
   {
     "id": "033",
     "evolution":"2",
+    "price":99.99,
     "name": {
       "english": "Nidorino",
       "japanese": "ニドリーノ",
@@ -695,6 +741,7 @@
   {
     "id": "034",
     "evolution":"3",
+    "price":249.39,
     "name": {
       "english": "Nidoking",
       "japanese": "ニドキング",
@@ -716,6 +763,8 @@
   },
   {
     "id": "035",
+    "evolution":"1",
+    "price": 49.99,
     "name": {
       "english": "Clefairy",
       "japanese": "ピッピ",
@@ -737,6 +786,7 @@
   {
     "id": "036",
     "evolution":"2",
+    "price":99.99,
     "name": {
       "english": "Clefable",
       "japanese": "ピクシー",
@@ -757,6 +807,8 @@
   },
   {
     "id": "037",
+    "evolution":"1",
+    "price": 49.99,
     "name": {
       "english": "Vulpix",
       "japanese": "ロコン",
@@ -778,6 +830,7 @@
   {
     "id": "038",
     "evolution":"2",
+    "price":99.99,
     "name": {
       "english": "Ninetales",
       "japanese": "キュウコン",
@@ -798,6 +851,8 @@
   },
   {
     "id": "039",
+    "evolution":"1",
+    "price": 49.99,
     "name": {
       "english": "Jigglypuff",
       "japanese": "プリン",
@@ -820,6 +875,7 @@
   {
     "id": "040",
     "evolution":"2",
+    "price":99.99,
     "name": {
       "english": "Wigglytuff",
       "japanese": "プクリン",
@@ -841,6 +897,8 @@
   },
   {
     "id": "041",
+    "evolution":"1",
+    "price": 49.99,
     "name": {
       "english": "Zubat",
       "japanese": "ズバット",
@@ -863,6 +921,7 @@
   {
     "id": "042",
     "evolution":"2",
+    "price":99.99,
     "name": {
       "english": "Golbat",
       "japanese": "ゴルバット",
@@ -884,6 +943,8 @@
   },
   {
     "id": "043",
+    "evolution":"1",
+    "price": 49.99,
     "name": {
       "english": "Oddish",
       "japanese": "ナゾノクサ",
@@ -906,6 +967,7 @@
   {
     "id": "044",
     "evolution":"2",
+    "price":99.99,
     "name": {
       "english": "Gloom",
       "japanese": "クサイハナ",
@@ -928,6 +990,7 @@
   {
     "id": "045",
     "evolution":"3",
+    "price":249.39,
     "name": {
       "english": "Vileplume",
       "japanese": "ラフレシア",
@@ -949,6 +1012,8 @@
   },
   {
     "id": "046",
+    "evolution":"1",
+    "price": 49.99,
     "name": {
       "english": "Paras",
       "japanese": "パラス",
@@ -971,6 +1036,7 @@
   {
     "id": "047",
     "evolution":"2",
+    "price":99.99,
     "name": {
       "english": "Parasect",
       "japanese": "パラセクト",
@@ -992,6 +1058,8 @@
   },
   {
     "id": "048",
+    "evolution":"1",
+    "price": 49.99,
     "name": {
       "english": "Venonat",
       "japanese": "コンパン",
@@ -1014,6 +1082,7 @@
   {
     "id": "049",
     "evolution":"2",
+    "price":99.99,
     "name": {
       "english": "Venomoth",
       "japanese": "モルフォン",
@@ -1035,6 +1104,8 @@
   },
   {
     "id": "050",
+    "evolution":"1",
+    "price": 49.99,
     "name": {
       "english": "Diglett",
       "japanese": "ディグダ",
@@ -1056,6 +1127,7 @@
   {
     "id": "051",
     "evolution":"2",
+    "price":99.99,
     "name": {
       "english": "Dugtrio",
       "japanese": "ダグトリオ",
@@ -1076,6 +1148,8 @@
   },
   {
     "id": "052",
+    "evolution":"1",
+    "price": 49.99,
     "name": {
       "english": "Meowth",
       "japanese": "ニャース",
@@ -1097,6 +1171,7 @@
   {
     "id": "053",
     "evolution":"2",
+    "price":99.99,
     "name": {
       "english": "Persian",
       "japanese": "ペルシアン",
@@ -1117,6 +1192,8 @@
   },
   {
     "id": "054",
+    "evolution":"1",
+    "price": 49.99,
     "name": {
       "english": "Psyduck",
       "japanese": "コダック",
@@ -1138,6 +1215,7 @@
   {
     "id": "055",
     "evolution":"2",
+    "price":99.99,
     "name": {
       "english": "Golduck",
       "japanese": "ゴルダック",
@@ -1158,6 +1236,8 @@
   },
   {
     "id": "056",
+    "evolution":"1",
+    "price": 49.99,
     "name": {
       "english": "Mankey",
       "japanese": "マンキー",
@@ -1179,6 +1259,7 @@
   {
     "id": "057",
     "evolution":"2",
+    "price":99.99,
     "name": {
       "english": "Primeape",
       "japanese": "オコリザル",
@@ -1199,6 +1280,8 @@
   },
   {
     "id": "058",
+    "evolution":"1",
+    "price": 49.99,
     "name": {
       "english": "Growlithe",
       "japanese": "ガーディ",
@@ -1220,6 +1303,7 @@
   {
     "id": "059",
     "evolution":"2",
+    "price":99.99,
     "name": {
       "english": "Arcanine",
       "japanese": "ウインディ",
@@ -1240,6 +1324,8 @@
   },
   {
     "id": "060",
+    "evolution":"1",
+    "price": 49.99,
     "name": {
       "english": "Poliwag",
       "japanese": "ニョロモ",
@@ -1261,6 +1347,7 @@
   {
     "id": "061",
     "evolution":"2",
+    "price":99.99,
     "name": {
       "english": "Poliwhirl",
       "japanese": "ニョロゾ",
@@ -1282,6 +1369,7 @@
   {
     "id": "062",
     "evolution":"3",
+    "price":249.39,
     "name": {
       "english": "Poliwrath",
       "japanese": "ニョロボン",
@@ -1303,6 +1391,8 @@
   },
   {
     "id": "063",
+    "evolution":"1",
+    "price": 49.99,
     "name": {
       "english": "Abra",
       "japanese": "ケーシィ",
@@ -1324,6 +1414,7 @@
   {
     "id": "064",
     "evolution":"2",
+    "price":99.99,
     "name": {
       "english": "Kadabra",
       "japanese": "ユンゲラー",
@@ -1345,6 +1436,7 @@
   {
     "id": "065",
     "evolution":"3",
+    "price":249.39,
     "name": {
       "english": "Alakazam",
       "japanese": "フーディン",
@@ -1365,6 +1457,8 @@
   },
   {
     "id": "066",
+    "evolution":"1",
+    "price": 49.99,
     "name": {
       "english": "Machop",
       "japanese": "ワンリキー",
@@ -1386,6 +1480,7 @@
   {
     "id": "067",
     "evolution":"2",
+    "price":99.99,
     "name": {
       "english": "Machoke",
       "japanese": "ゴーリキー",
@@ -1407,6 +1502,7 @@
   {
     "id": "068",
     "evolution":"3",
+    "price":249.39,
     "name": {
       "english": "Machamp",
       "japanese": "カイリキー",
@@ -1427,6 +1523,8 @@
   },
   {
     "id": "069",
+    "evolution":"1",
+    "price": 49.99,
     "name": {
       "english": "Bellsprout",
       "japanese": "マダツボミ",
@@ -1449,6 +1547,7 @@
   {
     "id": "070",
     "evolution":"2",
+    "price":99.99,
     "name": {
       "english": "Weepinbell",
       "japanese": "ウツドン",
@@ -1471,6 +1570,7 @@
   {
     "id": "071",
     "evolution":"3",
+    "price":249.39,
     "name": {
       "english": "Victreebel",
       "japanese": "ウツボット",
@@ -1492,6 +1592,8 @@
   },
   {
     "id": "072",
+    "evolution":"1",
+    "price": 49.99,
     "name": {
       "english": "Tentacool",
       "japanese": "メノクラゲ",
@@ -1514,6 +1616,7 @@
   {
     "id": "073",
     "evolution":"2",
+    "price":99.99,
     "name": {
       "english": "Tentacruel",
       "japanese": "ドククラゲ",
@@ -1535,6 +1638,8 @@
   },
   {
     "id": "074",
+    "evolution":"1",
+    "price": 49.99,
     "name": {
       "english": "Geodude",
       "japanese": "イシツブテ",
@@ -1557,6 +1662,7 @@
   {
     "id": "075",
     "evolution":"2",
+    "price":99.99,
     "name": {
       "english": "Graveler",
       "japanese": "ゴローン",
@@ -1579,6 +1685,7 @@
   {
     "id": "076",
     "evolution":"3",
+    "price":249.39,
     "name": {
       "english": "Golem",
       "japanese": "ゴローニャ",
@@ -1600,6 +1707,8 @@
   },
   {
     "id": "077",
+    "evolution":"1",
+    "price": 49.99,
     "name": {
       "english": "Ponyta",
       "japanese": "ポニータ",
@@ -1621,6 +1730,7 @@
   {
     "id": "078",
     "evolution":"2",
+    "price":99.99,
     "name": {
       "english": "Rapidash",
       "japanese": "ギャロップ",
@@ -1641,6 +1751,8 @@
   },
   {
     "id": "079",
+    "evolution":"1",
+    "price": 49.99,
     "name": {
       "english": "Slowpoke",
       "japanese": "ヤドン",
@@ -1663,6 +1775,7 @@
   {
     "id": "080",
     "evolution":"2",
+    "price":99.99,
     "name": {
       "english": "Slowbro",
       "japanese": "ヤドラン",
@@ -1684,6 +1797,8 @@
   },
   {
     "id": "081",
+    "evolution":"1",
+    "price": 49.99,
     "name": {
       "english": "Magnemite",
       "japanese": "コイル",
@@ -1706,6 +1821,7 @@
   {
     "id": "082",
     "evolution":"2",
+    "price":99.99,
     "name": {
       "english": "Magneton",
       "japanese": "レアコイル",
@@ -1727,6 +1843,8 @@
   },
   {
     "id": "083",
+    "evolution":"1",
+    "price": 49.99,
     "name": {
       "english": "Farfetch'd",
       "japanese": "カモネギ",
@@ -1749,6 +1867,7 @@
   {
     "id": "084",
     "evolution":"2",
+    "price":99.99,
     "name": {
       "english": "Doduo",
       "japanese": "ドードー",
@@ -1771,6 +1890,7 @@
   {
     "id": "085",
     "evolution":"3",
+    "price":249.39,
     "name": {
       "english": "Dodrio",
       "japanese": "ドードリオ",
@@ -1792,6 +1912,8 @@
   },
   {
     "id": "086",
+    "evolution":"1",
+    "price": 49.99,
     "name": {
       "english": "Seel",
       "japanese": "パウワウ",
@@ -1813,6 +1935,7 @@
   {
     "id": "087",
     "evolution":"2",
+    "price":99.99,
     "name": {
       "english": "Dewgong",
       "japanese": "ジュゴン",
@@ -1834,6 +1957,8 @@
   },
   {
     "id": "088",
+    "evolution":"1",
+    "price": 49.99,
     "name": {
       "english": "Grimer",
       "japanese": "ベトベター",
@@ -1855,6 +1980,7 @@
   {
     "id": "089",
     "evolution":"2",
+    "price":99.99,
     "name": {
       "english": "Muk",
       "japanese": "ベトベトン",
@@ -1875,6 +2001,8 @@
   },
   {
     "id": "090",
+    "evolution":"1",
+    "price": 49.99,
     "name": {
       "english": "Shellder",
       "japanese": "シェルダー",
@@ -1896,6 +2024,7 @@
   {
     "id": "091",
     "evolution":"2",
+    "price":99.99,
     "name": {
       "english": "Cloyster",
       "japanese": "パルシェン",
@@ -1917,6 +2046,8 @@
   },
   {
     "id": "092",
+    "evolution":"1",
+    "price": 49.99,
     "name": {
       "english": "Gastly",
       "japanese": "ゴース",
@@ -1939,6 +2070,7 @@
   {
     "id": "093",
     "evolution":"2",
+    "price":99.99,
     "name": {
       "english": "Haunter",
       "japanese": "ゴースト",
@@ -1961,6 +2093,7 @@
   {
     "id": "094",
     "evolution":"3",
+    "price":249.39,
     "name": {
       "english": "Gengar",
       "japanese": "ゲンガー",
@@ -1982,6 +2115,8 @@
   },
   {
     "id": "095",
+    "evolution":"1",
+    "price": 49.99,
     "name": {
       "english": "Onix",
       "japanese": "イワーク",
@@ -2003,6 +2138,8 @@
   },
   {
     "id": "096",
+    "evolution":"1",
+    "price": 49.99,
     "name": {
       "english": "Drowzee",
       "japanese": "スリープ",
@@ -2024,6 +2161,7 @@
   {
     "id": "097",
     "evolution":"2",
+    "price":99.99,
     "name": {
       "english": "Hypno",
       "japanese": "スリーパー",
@@ -2044,6 +2182,8 @@
   },
   {
     "id": "098",
+    "evolution":"1",
+    "price": 49.99,
     "name": {
       "english": "Krabby",
       "japanese": "クラブ",
@@ -2065,6 +2205,7 @@
   {
     "id": "099",
     "evolution":"2",
+    "price":99.99,
     "name": {
       "english": "Kingler",
       "japanese": "キングラー",
