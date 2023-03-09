@@ -1,4 +1,4 @@
-import { Button, Flex, Heading, Image, Link, Text } from "@chakra-ui/react";
+import { Button, Flex, Heading, Image, Link, Text, useToast } from "@chakra-ui/react";
 
 import { getColors } from "../../utils/returnColors";
 import { getTypes } from "../../utils/returnTypes";
@@ -15,7 +15,7 @@ export default function CardProduto(props) {
     const navigate = useNavigate()
     const context = useContext(GlobalContext)
     const { buyPokemon } = context
-
+    const toast = useToast()
 
 
     return (
@@ -52,14 +52,25 @@ export default function CardProduto(props) {
                     })}
                 </Flex>
                 <Image w={'150px'}
-                    
-                    zIndex={1}
-                    src={`https://www.serebii.net/swordshield/pokemon/${pokemon.id}.png`} />
 
-                <Button  _hover={{
-                        height: '3.4rem',
-                        transition: '0.2s'
-                    }} justifySelf={'flex-end'} leftIcon={<AddIcon />} colorScheme={'green'} onClick={() => buyPokemon(pokemon)} > Comprar  {pokemon.price}</Button>
+                    zIndex={1}
+                    src={pokemon.image} />
+
+                <Button _hover={{
+                    height: '3.4rem',
+                    transition: '0.2s'
+                }} justifySelf={'flex-end'} as='b' leftIcon={<AddIcon />} colorScheme={'green'} onClick={() => {
+                    buyPokemon(pokemon)
+                    toast({
+                        title: `${pokemon.name.english}`,
+                        description: "Pokemon adicionado ao carrinho!",
+                        status: 'success',
+                        duration: 3000,
+                        isClosable: true,
+                        position:"bottom-right"
+                                            
+                    })
+                }} > Comprar  {pokemon.price}</Button>
 
 
             </Flex>
