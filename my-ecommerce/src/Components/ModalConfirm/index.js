@@ -7,15 +7,15 @@ import { GlobalContext } from "../../GlobalContext/GlobalContext";
 
 export function ModalConfirm() {
     const context = useContext(GlobalContext)
-    const {onOpen,onClose,isOpen, pokeAdd} = context 
-   
+    const {onOpen,onClose,isOpen, pokeAdd,carrinhoMenu} = context 
+    
     return (
       <>
         <Button onClick={onOpen}>Trigger modal</Button>
   
-        <Modal   onClose={onClose} isOpen={isOpen} left='200px' >
+        <Modal onClose={onClose} isOpen={isOpen} left='200px' isCentered >
           <ModalOverlay />
-          <ModalContent bg={'whatsapp.200'}  >
+          <ModalContent w={['80vw','30vw']} bg={'whatsapp.200'}  >
             <ModalHeader> <CheckIcon/> <Text fontSize={'xl'} as='b' >{pokeAdd} </Text>Pokemon Adicionado ao carrinho! </ModalHeader>            
           </ModalContent>
         </Modal>

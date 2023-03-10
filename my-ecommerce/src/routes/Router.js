@@ -12,7 +12,7 @@ export default function Router (){
         <BrowserRouter>    
          <Routes>
             <Route index element={<HomePage/>}/>
-            <Route path='*' element={<ErrorPage/>}/>
+            <Route  path='*' element={<ErrorPage/>}/>
             <Route path='/carrinho' element={<CarrinhoPage/>}/>
          </Routes>   
         </BrowserRouter>

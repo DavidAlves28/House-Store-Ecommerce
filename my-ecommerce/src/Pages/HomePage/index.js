@@ -14,7 +14,7 @@ export default function HomePage() {
    
 
     return (
-        <Flex   flexDir={'column'} >
+        <Flex  bgGradient='linear(to-tr, teal.100, cyan.300,  teal.100)' flexDir={'column'} >
             <MenuSimple/>            
             <CarouselOfertas/>
             <Center > <Heading textShadow='2px 5px 5px rgba(0 ,0, 0, 0.5)' >Todos os pokemons</Heading></Center>
@@ -34,7 +34,7 @@ export default function HomePage() {
                             </Box>
                         )
                     })}
-                    {/* {  isOpen && <ModalConfirm/>}    */}
+                    {  isOpen && <ModalConfirm/>}   
                     
             </Flex>
         </Flex>

@@ -13,14 +13,14 @@ export default function GlobalState(props) {
 
     const [carrinho, setCarrinho] = useState([])
     const [carrinhoMenu, setCarrinhoMenu] = useState([])
-    const [total, setTotal] = useState('0,00')
-    const [search, setSearch] = useState('')
-    const [price, setPrice] = useState('0')
+    const [search, setSearch] = useState('')  
     const [pokeAdd, setPokeAdd] = useState('')
     const [tipo, setTipo] = useState('')
+    
 
     const { isOpen, onOpen, onClose } = useDisclosure()
 
+    // array para mostrar tipos no select do input no menu Header!
     const pokemontypesArray = [
         "Normal",
         "Fire",
@@ -39,68 +39,77 @@ export default function GlobalState(props) {
         "Steel",
         "Fairy"
     ];
+
+
     const onChangeTipo = (e) => {
         setTipo(e.target.value)
     }
     const onChangeSearch = (e) => {
         setSearch(e.target.value)
     }
-    const onChangePrice = (e) => {
-        setPrice(e.target.value)
-    }
-
-   
-
     
-    function buyPokemon(produto,) {
-        //filtra os produtos duplicados e aumenta quantidade
-        carrinhoMenu.forEach((prod, index) => {
-            if (prod.id === produto.id) {
-                carrinhoMenu[index].quantidade++ }
-        })
+
+
+  //  lista do carrinho para não mostrar item duplicado
+ 
+    function buyPokemon(produto) {
+        //filtra os produtos duplicados e aumenta quantidade      
+        const newCarrinho = [...carrinhoMenu]
+
+        const item = newCarrinho.find((item) => item.id === produto.id);
         // objeto para ser inserido no novo array
-        const newPokemon ={ 
-            id:produto.id,
-            nome: produto.name.english,
-            preco: produto.price,
+        const newPokemon = {
+            id: produto.id,
+            name: produto.name.english,
+            price: Number(produto.price),
             quantidade: 1
-        }     
-        //array com itens comprados!         
-        const newCarrinho = [...carrinhoMenu, newPokemon]
+        }
+        if (!item) {
+            newCarrinho.push(newPokemon);
+          } else {
+            item.quantidade= item.quantidade + 1;
+          }            
+       
         // set estados para ser usados
         setCarrinhoMenu(newCarrinho)
         setCarrinho(newCarrinho)
-        
+
         // estado para imprimir no modal o nome no pokemonn adicionado ao carrinho
         setPokeAdd(produto.name.english)
-        onOpen() // Open Modal
         
+        // Open Modal
+        // se o item não estiver no carrinho então o modal será visível
+        // se o item estiver no carrinho ,ele não mostrará o modal
+        item ? onClose() : onOpen()
+        // tempo para que o modal seja fechado!
         setTimeout(() => {
             onClose()
-        }, 2500)
+        }, 1000)
+    }
+
+
+    // função para remover item do carrinho e diminuir sua quantidade!
+    function deleteItem(produto) {
+        //cópia do array.
+       const newCarrinho = [...carrinhoMenu]
+       // função para verificar se o item já está no carrinho;
+       const item = newCarrinho.find((item) => item.id === produto.id);
+      //condicional para remover quantidade e excluir item do carrinho.
+       if(item && item.quantidade > 1  ){
+        item.quantidade = item.quantidade - 1
+        setCarrinhoMenu(newCarrinho)
+       } else {
+        const filterCarrinho = newCarrinho.filter((item)=> item.id !== produto.id)
+        setCarrinhoMenu(filterCarrinho)
+       }       
     }
     
-    
-    
-    
-    //  lista do carrinho para não mostrar item duplicado
-    const listaCarrinhoitemUnico = new Set();
-    const itensUnicos = carrinhoMenu.filter((produto) => {
-        const itemDuplicados = listaCarrinhoitemUnico.has(produto.id);
-        listaCarrinhoitemUnico.add(produto.id);
-        return !itemDuplicados;
-    });
-
-    // total de cada produto caso tenha mais quantidade
-    const totalQuantidade = itensUnicos.reduce((produto, nproduto) => {
-        return  produto + nproduto.quantidade * nproduto.preco
-      }, 0)
-    // total produtos adicionados ao carrinho
     const totalProdutos = carrinhoMenu.reduce((produto, nproduto) => {
-        return Number(produto) + Number(nproduto.preco)
+        return produto + nproduto.quantidade * nproduto.price
     }, 0)
-   
 
+   
+   
     const context = {
         carrinho,
         carrinhoMenu,
@@ -113,13 +122,9 @@ export default function GlobalState(props) {
         isOpen,
         onOpen,
         onClose,
-        onChangePrice,
-        price,
         pokeAdd,
         totalProdutos,
-        totalQuantidade,
-        itensUnicos
-
+        deleteItem,       
     }
     return (
         <GlobalContext.Provider value={context}>

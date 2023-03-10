@@ -9,6 +9,8 @@ import {
     Container,
     Image,
     Button,
+    Link,
+    Divider,
 } from '@chakra-ui/react';
 // Here we have used react-icons package for the icons
 import { BiLeftArrowAlt, BiRightArrowAlt } from 'react-icons/bi';
@@ -34,15 +36,17 @@ const settings = {
 
 export default function CaptionCarousel() {
 
-    const [slider, setSlider] = useState()
+
+    const [slider, setSlider] = useState()    
     const context = useContext(GlobalContext)
-    const {buyPokemon} = context
+    const { buyPokemon } = context
+
 
     const top = useBreakpointValue({ base: '90%', md: '50%' });
-    const side = useBreakpointValue({ base: '30%', md: '40px' });
+    const side = useBreakpointValue({ base: '30%', md: '100px' });
 
-
-
+    // Componente responsável por retornar um carrosel de cards em destaque.
+ 
     return (
         <Box
             position={'relative'}
@@ -71,7 +75,7 @@ export default function CaptionCarousel() {
                 transform={'translate(0%, -50%)'}
                 zIndex={2}
                 onClick={() => slider?.slickPrev()}>
-                <BiLeftArrowAlt size="40px" />
+                <BiLeftArrowAlt size="50px" />
             </IconButton>
             {/* Right Icon */}
             <IconButton
@@ -83,7 +87,7 @@ export default function CaptionCarousel() {
                 transform={'translate(0%, -50%)'}
                 zIndex={2}
                 onClick={() => slider?.slickNext()}>
-                <BiRightArrowAlt size="40px" />
+                <BiRightArrowAlt size="50px" />
             </IconButton>
             {/* Slider */}
             <Slider {...settings} ref={(slider) => setSlider(slider)}>
@@ -95,34 +99,46 @@ export default function CaptionCarousel() {
                             key={index}
                             height={'full'}
                             position="relative"
-                            backgroundPosition="center"
+                            backgroundPosition={['right', "center"]}
                             backgroundRepeat="no-repeat"
-                            backgroundSize={"contain"}                           
+                            backgroundSize={"contain"}
                             bgColor={getColors(card.type[0])}
                             backgroundImage={`url(${card.image})`}>
-                            {/* This is the block you need to change, to customize the caption */}
-                            <Container size="container.lg" height={["200px","280px"]} position="relative">
+
+                            <Container
+                                size="container.lg"
+                                height={["230px", "280px"]}
+                                position="relative">
+
                                 <Stack
-                                    spacing={6}
+                                    spacing={2}
                                     w={'full'}
                                     maxW={'lg'}
                                     position="absolute"
                                     top="50%"
                                     transform="translate(0, -50%)">
-                                    <Heading pos={'absolute'} left={['100px','420px']} color={'blackAlpha.800'} fontSize={{ base: '2xl', md: '4xl', lg: '5xl' }}>
-                                        {card.name.english}
-                                        <Button w={['38vw','20vw']} justifySelf={'flex-end'} leftIcon={<AddIcon/>} colorScheme={'green'} onClick={() => buyPokemon(card)} >Comprar {card.price}</Button>
+                                    <Heading
+                                        pos={'absolute'}
+                                        left={['3px', '420px']}
+                                        top={['-70px', '0']}
+                                        w='max-content'
+                                        color={'white'}
+                                        fontSize={{ base: '2xl', md: '3xl', lg: '4xl' }}>
+                                        <Link onClick={() => buyPokemon(card)}>
+                                            {card.name.english}
+                                        </Link>
+                                        <Divider />
                                     </Heading>
                                     {card.type.map((type, index) => {
                                         return (
                                             <Box key={index}>
-                                                <Image src={getTypes(type)} fontSize={{ base: 'md', lg: 'lg' }} color="GrayText">
-
+                                                <Image src={getTypes(type)}
+                                                    fontSize={{ base: 'md', lg: 'lg' }}
+                                                    color="GrayText">
                                                 </Image>
                                             </Box>
                                         )
                                     })}
-
                                 </Stack>
                             </Container>
                         </Box>
