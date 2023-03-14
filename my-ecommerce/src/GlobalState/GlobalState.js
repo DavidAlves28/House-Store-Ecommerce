@@ -1,44 +1,21 @@
 import { GlobalContext } from "../GlobalContext/GlobalContext";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
-import { useDisclosure, } from "@chakra-ui/react";
-
-
-
-
-
-
-
+import { useDisclosure, useToast, } from "@chakra-ui/react";
+import axios from 'axios'
+import { BASE_URL } from "../constants/Base_url";
 export default function GlobalState(props) {
 
     const [carrinho, setCarrinho] = useState([])
     const [carrinhoMenu, setCarrinhoMenu] = useState([])
-    const [search, setSearch] = useState('')  
-    const [pokeAdd, setPokeAdd] = useState('')
+    const [search, setSearch] = useState('')
+    const [productAdd, setProductAdd] = useState('')
     const [tipo, setTipo] = useState('')
-    
+    const [infoDetails, setInfoDetails] = useState([])
+    const [produtos, setProdutos] = useState([])
 
-    const { isOpen, onOpen, onClose } = useDisclosure()
-
-    // array para mostrar tipos no select do input no menu Header!
-    const pokemontypesArray = [
-        "Normal",
-        "Fire",
-        "Water",
-        "Grass",
-        "Flying",
-        "Fighting",
-        "Poison",
-        "Electric",
-        "Ground",
-        "Rock",
-        "Psychic",
-        "Ice",
-        "Bug",
-        "Ghost",
-        "Steel",
-        "Fairy"
-    ];
+    const { isOpen, onOpen, onClose, } = useDisclosure()
+    const toast = useToast()
 
 
     const onChangeTipo = (e) => {
@@ -47,84 +24,93 @@ export default function GlobalState(props) {
     const onChangeSearch = (e) => {
         setSearch(e.target.value)
     }
-    
+    const getAllProducts = () =>{
+       
+        axios.get(`${BASE_URL}/products`)
+        .then((res)=>setProdutos(res.data.products))
+        .catch((err)=>console.log(err))
+    }
 
 
-  //  lista do carrinho para não mostrar item duplicado
- 
-    function buyPokemon(produto) {
+
+    //  lista do carrinho para não mostrar item duplicado
+
+    function addToCart(produto) {
         //filtra os produtos duplicados e aumenta quantidade      
         const newCarrinho = [...carrinhoMenu]
-
         const item = newCarrinho.find((item) => item.id === produto.id);
         // objeto para ser inserido no novo array
-        const newPokemon = {
+        const newProduct = {
             id: produto.id,
-            name: produto.name.english,
+            name: produto.title,
             price: Number(produto.price),
             quantidade: 1
         }
         if (!item) {
-            newCarrinho.push(newPokemon);
-          } else {
-            item.quantidade= item.quantidade + 1;
-          }            
-       
+            newCarrinho.push(newProduct);
+        } else {
+            item.quantidade = item.quantidade + 1;
+        }
         // set estados para ser usados
         setCarrinhoMenu(newCarrinho)
         setCarrinho(newCarrinho)
-
-        // estado para imprimir no modal o nome no pokemonn adicionado ao carrinho
-        setPokeAdd(produto.name.english)
-        
-        // Open Modal
-        // se o item não estiver no carrinho então o modal será visível
-        // se o item estiver no carrinho ,ele não mostrará o modal
-        item ? onClose() : onOpen()
-        // tempo para que o modal seja fechado!
+  
+      
         setTimeout(() => {
             onClose()
         }, 1000)
     }
 
-
     // função para remover item do carrinho e diminuir sua quantidade!
-    function deleteItem(produto) {
+    function removeItemToCart(produto) {
         //cópia do array.
-       const newCarrinho = [...carrinhoMenu]
-       // função para verificar se o item já está no carrinho;
-       const item = newCarrinho.find((item) => item.id === produto.id);
-      //condicional para remover quantidade e excluir item do carrinho.
-       if(item && item.quantidade > 1  ){
-        item.quantidade = item.quantidade - 1
-        setCarrinhoMenu(newCarrinho)
-       } else {
-        const filterCarrinho = newCarrinho.filter((item)=> item.id !== produto.id)
-        setCarrinhoMenu(filterCarrinho)
-       }       
+        const newCarrinho = [...carrinhoMenu]
+        // função para verificar se o item já está no carrinho;
+        const item = newCarrinho.find((item) => item.id === produto.id);
+        //condicional para remover quantidade e excluir item do carrinho.
+        if (item && item.quantidade > 1) {
+            item.quantidade = item.quantidade - 1
+            setCarrinhoMenu(newCarrinho)
+        } else {
+            const filterCarrinho = newCarrinho.filter((item) => item.id !== produto.id)
+            setCarrinhoMenu(filterCarrinho)
+        }
     }
-    
+
     const totalProdutos = carrinhoMenu.reduce((produto, nproduto) => {
         return produto + nproduto.quantidade * nproduto.price
     }, 0)
 
+    function details (id){
+        onOpen()
+        setProductAdd(id)
+    }
    
-   
+    
+
+    useEffect(() => {
+       getAllProducts()
+       
+    }, []);
+
+
     const context = {
         carrinho,
         carrinhoMenu,
-        pokemontypesArray,
         tipo,
         onChangeTipo,
-        buyPokemon,
+        addToCart,
         onChangeSearch,
         search,
         isOpen,
         onOpen,
         onClose,
-        pokeAdd,
+        productAdd,
         totalProdutos,
-        deleteItem,       
+        removeItemToCart,     
+        details,
+        produtos,
+        toast
     }
     return (
         <GlobalContext.Provider value={context}>

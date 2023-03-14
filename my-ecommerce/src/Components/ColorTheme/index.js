@@ -1,7 +1,7 @@
 import { Button, ButtonProps, Flex, useColorMode } from '@chakra-ui/react';
 import { BsSun, BsMoonStarsFill } from 'react-icons/bs';
 
-export default function ThemeMode(props) {
+export default function ColorMode(props) {
   const { colorMode, toggleColorMode } = useColorMode();
   return (
     /**
