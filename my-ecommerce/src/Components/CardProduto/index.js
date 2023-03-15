@@ -1,7 +1,6 @@
 import { StarIcon } from "@chakra-ui/icons";
 import { Badge, Box, Button, Flex, Image, Spinner, Text } from "@chakra-ui/react";
 import { useContext } from "react";
-import { BsStar, BsStarFill, BsStarHalf } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import { GlobalContext } from "../../GlobalContext/GlobalContext";
 
@@ -11,12 +10,11 @@ export default function NewCard(props) {
     const { produto } = props
     const context = useContext(GlobalContext)
     const { addToCart, toast, details } = context
-    const navigate = useNavigate()
+     const priceOld = produto.discountPercentage/100 * produto.price + produto.price
 
     return (
         <Flex
             p={2}
-
             alignItems="center"
             justifyContent="center"
         >
@@ -31,12 +29,12 @@ export default function NewCard(props) {
                 rounded="lg"
                 shadow="lg"
                 w="380px"
-                h="580px"
+                h="600px"
                 alignItems="center"
                 justifyContent="center"
             >
                 <Image
-                    h={'70%'}
+                    h={'65%'}
                     w="full"
                     overflow={'hidden'}
                     my={2}
@@ -44,27 +42,10 @@ export default function NewCard(props) {
                     alt={produto.title}
                 />
 
-                <Box w='100' p="6">
-                    <Box
-                        display="flex"
-                        gap={2}
-                        alignItems="center"
-                        justifyContent={'flex-start'} >
-                        <Badge rounded="full" px="2" colorScheme="teal">
-                            New
-                        </Badge>
-                        <Box
-                            color="gray.500"
-                            fontWeight="semibold"
-                            letterSpacing="wide"
-                            fontSize="md"
-                            textTransform="uppercase"
-                            textDecor={'line-through'}
-                        >
-                            {produto.discountPercentage}
-                        </Box>
-                        off &bull;
-                    </Box>
+                <Box w='100' h='100%' p="6">
+                    <Badge rounded="full" px="2" colorScheme="teal">
+                        New
+                    </Badge>
 
                     <Flex justifyContent='space-between'  >
                         <Text
@@ -80,9 +61,29 @@ export default function NewCard(props) {
 
 
                     </Flex>
+                    <Box
+                        display="flex"
+                        gap={2}
+                        alignItems="center"
+                        justifyContent={'flex-start'} >
+                        <Text as='b'  >
 
+                        De {priceOld.toFixed(2)}    
+                        </Text>
+                        <Box
+                            color="gray.500"
+                            fontWeight="semibold"
+                            letterSpacing="wide"
+                            fontSize="md"
+                            textTransform="uppercase"
+                            textDecor={'line-through'}
+                        >
+                        %    {produto.discountPercentage}
+                        </Box>
+                         &bull;
+                    </Box>
                     <Text as='b'  >
-                        R$ {produto.price.toFixed(2)}
+                     Por   R$ {produto.price.toFixed(2)}
                     </Text>
 
 

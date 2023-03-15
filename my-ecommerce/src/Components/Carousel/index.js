@@ -93,8 +93,7 @@ export default function CaptionCarousel() {
           />
 
         ))}
-          <Button>
-          </Button>
+          
       </Slider>
     </Box>
   );

@@ -93,7 +93,7 @@ export default function MenuSimple() {
                                         bg={'ghostwhite'}
                                         h="full"
                                         mx={'15px'}
-                                        w={['90vw', 'full']}
+                                        w={['90vw', '25vw']}
                                         justifyContent={'space-between'}
                                         alignItems='center'
                                         rounded={'lg'}
@@ -107,7 +107,7 @@ export default function MenuSimple() {
                                             rounded='10px'
                                             bg={'bisque'}
                                             h={['3.5vh', '30px']}
-                                            w={['30vw', '50%', '35%']}
+                                            w={['30vw', '50%', '30%']}
                                         >
                                             <Button
                                                 fontSize='sm'

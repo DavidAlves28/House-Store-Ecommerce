@@ -9,7 +9,12 @@ import {
     useDisclosure,
     DrawerOverlay,
     Select,
-    Image
+    Image,
+    FormLabel,
+    Checkbox,
+    Button,
+
+
 } from "@chakra-ui/react";
 import { useContext } from "react";
 import CaptionCarousel from "../../Components/Carousel";
@@ -20,19 +25,42 @@ import NewCard from "../../Components/CardProduto/index";
 import ColorMode from "../../Components/ColorTheme";
 import iconStore from "../../assets/imgs/store.png"
 import MenuSimple from "../../Components/MenuCarrinho";
-import { categoryFilter } from "../../utils/category";
 
-
+import { goToCarrinho } from "../../routes/coordinator";
+import { useNavigate } from "react-router-dom";
+import FooterInfo from "../../Components/Footer";
 
 export default function HomePage() {
-    const sidebar = useDisclosure();
+    // Context
     const context = useContext(GlobalContext)
-    const { produtos, isOpen, search, onChangeSearch, categorias, onChangeCategoria, brand, onChangeBrands } = context
+    const { produtos,
+        isOpen,
+        search,
+        onChangeSearch,
+        categorias,
+        onChangeCategoria,
+        brand,
+        onChangeBrands,
+        onChangeValue,
+        valueMax,
+
+    } = context
+
+    const navigate = useNavigate()
+    const sidebar = useDisclosure();
+
+    //   para não mostrar item duplicado no filter de  categoria
+    const setTeste = new Set()
+    const filterCategory = produtos.filter((produto) => {
+        const duplicatedPerson = setTeste.has(produto.category);
+        setTeste.add(produto.category);
+        return !duplicatedPerson;
+    })
+
+
     const NavItem = (props) => {
         const { icon, children, ...rest } = props;
 
-        console.log(categorias);
-        console.log(brand);
         return (
             <Flex
                 align="center"
@@ -57,6 +85,7 @@ export default function HomePage() {
         );
     };
 
+
     const SidebarContent = (props) => (
         <Box
             as="nav"
@@ -64,7 +93,7 @@ export default function HomePage() {
             top="0"
             left="0"
             zIndex="sticky"
-            h="full"
+            h='100vh'
             pb="10"
             overflowX="hidden"
             overflowY="auto"
@@ -91,7 +120,7 @@ export default function HomePage() {
                     House Store
                 </Text>
             </Flex>
-            <Flex
+            <Box
                 direction="column"
                 as="nav"
                 fontSize="sm"
@@ -101,41 +130,71 @@ export default function HomePage() {
                 }}
                 aria-label="Main Navigation"
             >
-
-
                 <NavItem>
-
-                    <Select textTransform={'capitalize'} onChange={onChangeBrands}   >
-                        <option value={''}>Marcas</option>
-
-                        {produtos.map((item, index) => {
-                            return (
-                                <option key={index} > {item.brand}  </option>
-                            )
-                        })}
-                    </Select>
-
+                    <FormLabel  >
+                        Marcas
+                        <Select
+                            placeholder="Ver marcas"
+                            textTransform={'capitalize'}
+                            onChange={onChangeBrands}
+                            value={brand} >
+                            {produtos.map((item, index) => {
+                                return (
+                                    <option value={item.brand} key={index} > {item.brand}  </option>
+                                )
+                            })}
+                        </Select>
+                    </FormLabel>
                 </NavItem>
-                <NavItem icon={"HiCollection"}>
-
-                    <Select textTransform={'capitalize'} onChange={onChangeCategoria}  >
-                        <option value={''}>Categoria</option>
-
-                        {categoryFilter.map((cate, index) => {
-                            return (
-                                <option key={index} > {cate}  </option>
-                            )
-                        })}
-                    </Select>
-
+                <NavItem>
+                    <FormLabel>
+                        Categorias
+                        <Select
+                            placeholder="Ver categorias"
+                            textTransform={'capitalize'}
+                            onChange={onChangeCategoria}
+                            value={categorias} >
+                            {filterCategory.map((item, index) => {
+                                return (
+                                    <option value={item.category} key={index}>{item.category} </option>)
+                            })}
+                        </Select>
+                    </FormLabel>
                 </NavItem>
-                <NavItem >Carrinho <FiShoppingCart size={'20px'} /> </NavItem>
 
-            </Flex>
+
+
+                <Flex flexDir={'column-reverse'} >
+                    <NavItem>
+                        <Checkbox onChange={onChangeValue} value={30} > Até R$ 30</Checkbox>
+                    </NavItem>
+                    <NavItem>
+                        <Checkbox onChange={onChangeValue} value={100}> até R$ 100 </Checkbox>
+                    </NavItem>
+                    <NavItem>
+                        <Checkbox onChange={onChangeValue} value={200}> até R$ 200 </Checkbox>
+                    </NavItem>
+                    <NavItem>
+                        <Checkbox onChange={onChangeValue} value={300}> até R$ 300 </Checkbox>
+                    </NavItem>
+                    <NavItem>
+                        <Checkbox onChange={onChangeValue} value={500}> até R$ 500 </Checkbox>
+                    </NavItem>
+                    <NavItem>
+                        <Checkbox onChange={onChangeValue} value={1000}> até R$ 1000 </Checkbox>
+                    </NavItem>
+                    <NavItem>
+                        <Checkbox onChange={onChangeValue} value={Infinity}> Ver todos </Checkbox>
+                    </NavItem>
+                </Flex>
+                <NavItem p={6} onClick={() => goToCarrinho(navigate)} >Carrinho <FiShoppingCart size={'25px'} /> </NavItem>
+
+            </Box>
         </Box>
     );
 
     return (
+        <>
         <Box
             as="section"
             bg="whiteAlpha.800"
@@ -221,24 +280,31 @@ export default function HomePage() {
                 </Flex>
 
                 <Flex
-                    py={3}
+                    py={10}
                     m='0 auto'
-                    w={'75vw'}
+                    w={'80vw'}
                     flexWrap='wrap'
+                    mb='250px'
                     justifyContent={'center'}
                     alignItems={'center'} >
+                    
                     <CaptionCarousel />
-                    {produtos.filter(((produto) => {
-                        return !produto ? produto : produto.brand === brand
-                    }))
+                    {produtos
+                        .filter((produto) => {
+                            return !produto ? produto : produto.price <= valueMax
+                        })
+                        .filter((produto) => {
+                            return produto === "" ? produto : produto.brand.includes(brand)
+                        })
                         .filter(((produto) => {
-                            return !produto ? produto : produto.category === categorias
+                            return produto === "" ? produto : produto.category.includes(categorias)
                         }))
                         .filter((produto) => {
                             return !produto ? produto : produto.title.toLowerCase().includes(search.toLowerCase())
-                        }).map((produto) => {
+                        })
+                        .map((produto) => {
                             return (
-                                <Box key={produto.id}>
+                                <Box w={''} key={produto.id}>
                                     <NewCard
                                         produto={produto} />
                                 </Box>
@@ -249,5 +315,9 @@ export default function HomePage() {
 
             </Box>
         </Box>
+            
+            <FooterInfo />
+                          
+            </>
     );
 };
