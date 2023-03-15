@@ -60,7 +60,7 @@ export default function CaptionCarousel() {
         left={side}
         top={top}
         transform={'translate(0%, -50%)'}
-        zIndex={2}
+        zIndex={1}
         onClick={() => slider?.slickPrev()}>
         <BiLeftArrowAlt />
       </IconButton>
@@ -79,7 +79,7 @@ export default function CaptionCarousel() {
       </IconButton>
       {/* Slider */}
       <Slider {...settings} ref={(slider) => setSlider(slider)}>
-        {produtos.map((prod, index) => (
+        {produtos.slice(2,10).map((prod, index) => (
           <Box
             key={index}
             cursor='po'

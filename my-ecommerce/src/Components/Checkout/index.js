@@ -2,7 +2,7 @@
 import { Box, Flex, Grid, GridItem, } from "@chakra-ui/react";
 import { useContext } from "react";
 import { GlobalContext } from "../../GlobalContext/GlobalContext";
-import MenuSimple from "../Menu/index";
+import MenuSimple from "../MenuCarrinho/index";
 
 export default function Checkout() {
     const context = useContext(GlobalContext);

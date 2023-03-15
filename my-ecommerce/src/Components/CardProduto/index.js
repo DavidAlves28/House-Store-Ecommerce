@@ -1,24 +1,17 @@
 import { StarIcon } from "@chakra-ui/icons";
-import { Badge, Box, Button, Flex, Heading, Image, Spinner, Text, useToast } from "@chakra-ui/react";
+import { Badge, Box, Button, Flex, Image, Spinner, Text } from "@chakra-ui/react";
 import { useContext } from "react";
 import { BsStar, BsStarFill, BsStarHalf } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import { GlobalContext } from "../../GlobalContext/GlobalContext";
-import { goToDetails } from "../../routes/coordinator";
+
 
 
 export default function NewCard(props) {
     const { produto } = props
     const context = useContext(GlobalContext)
-    const { addToCart, removeItemToCart, toast, details } = context
+    const { addToCart, toast, details } = context
     const navigate = useNavigate()
-
-
-
-
-
-
-
 
     return (
         <Flex
@@ -32,7 +25,8 @@ export default function NewCard(props) {
                 _dark={{
                     bg: "gray.700",
                 }}
-
+                py={4}
+                px={2}
                 borderWidth="1px"
                 rounded="lg"
                 shadow="lg"
@@ -82,7 +76,7 @@ export default function NewCard(props) {
                             h='full'>
                             {produto.title}
                         </Text>
-                        <Button onClick={() => details(produto.id)}>ver Detalhes</Button>
+                        <Button textDecor={'underline'} onClick={() => details(produto.id)}> Detalhes</Button>
 
 
                     </Flex>

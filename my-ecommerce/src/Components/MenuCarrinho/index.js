@@ -2,15 +2,7 @@
 import {
     Box,
     Flex,
-    HStack,
-    IconButton,
-    useDisclosure,
-    useColorModeValue,
-    Stack,
-    Center,
-    Image,
-    Input,
-    Select,
+    Image,   
     Menu,
     MenuButton,
     Button,
@@ -20,32 +12,24 @@ import {
     Text,
 
 } from '@chakra-ui/react';
-import { AddIcon, CloseIcon, MinusIcon } from '@chakra-ui/icons';
+import { AddIcon, MinusIcon } from '@chakra-ui/icons';
 import { useContext } from 'react';
 import { GlobalContext } from '../../GlobalContext/GlobalContext';
 import { goToCarrinho, goToCheckout } from '../../routes/coordinator';
 import { useNavigate } from 'react-router-dom';
 import { SlWallet } from 'react-icons/sl'
 import shoppingFull from '../../assets/imgs/shopping-cart.png'
-import { GiHamburgerMenu } from 'react-icons/gi'
+
 
 
 
 export default function MenuSimple() {
 
     // Componente responsável por retornar carrinho atualizado.
-    // botão para alterar tema da página escuro ou claro.
-    // Comtém inputs de pesquisa e tipo.
-
-
-    const { isOpen, onOpen, onClose } = useDisclosure();
+   
     const context = useContext(GlobalContext)
-    const {
-        onChangeTipo,
-        tipo,
-        onChangeSearch,
-        carrinhoMenu,
-        search,
+    const {        
+        carrinhoMenu,       
         addToCart,
         removeItemToCart,
         totalProdutos,
@@ -54,18 +38,19 @@ export default function MenuSimple() {
     const navigate = useNavigate()
 
     return (
-
         <Box>
             <Flex
                 alignItems={'center'}
                 justifyContent={'space-between'}>
                 <Flex
+                    zIndex={3}
                     w={"100%"}
                     gap='10px'
                     alignItems={'end'}
                     justifyContent={'center'} >
                     <Menu >
                         <MenuButton
+                       
                             rounded={'full'}
                             variant={'link'}
                             cursor={'pointer'}
@@ -88,6 +73,7 @@ export default function MenuSimple() {
                                         as='b'
                                         h='min-content'
                                         fontSize={'sm'}>
+
                                         {carrinhoMenu.length}
                                     </Text>
                                 </Flex> :
@@ -104,17 +90,24 @@ export default function MenuSimple() {
                                 return (
                                     <Flex
                                         p='1%'
-                                        bg={'whatsapp.2w00'}
-                                        h="full" w={['70vw', '15vw']}
+                                        bg={'ghostwhite'}
+                                        h="full"
+                                        mx={'15px'}
+                                        w={['90vw', 'full']}
                                         justifyContent={'space-between'}
-                                        alignItems='center' key={item.id}>
+                                        alignItems='center'
+                                        rounded={'lg'}
+                                        _dark={{
+                                            bg:"white"
+                                        }} 
+                                        key={item.id}>
                                         <Flex
                                             justifyContent={'space-between'}
                                             alignItems='center'
                                             rounded='10px'
                                             bg={'bisque'}
                                             h={['3.5vh', '30px']}
-                                            w={['26vw', '50%', '35%']}
+                                            w={['30vw', '50%', '35%']}
                                         >
                                             <Button
                                                 fontSize='sm'
@@ -122,7 +115,7 @@ export default function MenuSimple() {
                                                 w='2px'
                                                 h='22px'
                                                 colorScheme={'whatsapp'}
-                                                onClick={() =>addToCart(item)}
+                                                onClick={() => addToCart(item)}
                                             > <AddIcon />
                                             </Button>
                                             <Text color={'black'} as="b">
@@ -139,10 +132,10 @@ export default function MenuSimple() {
                                             </Button>
                                         </Flex>
 
-                                        <Text textDecor={'underline'} color='blue.500' as="b">
+                                        <Text fontWeight={'semibold'} _dark={{color:'black'}} >
                                             {item.name}
                                         </Text>
-                                        <Text as="b">
+                                        <Text fontWeight={'semibold'}  _dark={{color:'black'}} >
                                             R${item.price}
                                         </Text>
                                     </Flex>

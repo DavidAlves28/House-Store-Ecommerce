@@ -1,25 +1,38 @@
-import { Box, Drawer, DrawerContent, Flex, IconButton, Input, InputGroup, InputLeftElement, Text, useDisclosure, DrawerOverlay, Select, SelectField, Heading, Center } from "@chakra-ui/react";
+import {
+    Box,
+    Drawer,
+    DrawerContent,
+    Flex, IconButton,
+    Input, InputGroup,
+    InputLeftElement,
+    Text,
+    useDisclosure,
+    DrawerOverlay,
+    Select,
+    Image
+} from "@chakra-ui/react";
 import { useContext } from "react";
 import CaptionCarousel from "../../Components/Carousel";
 import { ModalDetails } from "../../Components/ModalDetails/index";
 import { GlobalContext } from "../../GlobalContext/GlobalContext";
-import { FiMenu, FiSearch } from "react-icons/fi"
+import { FiMenu, FiSearch, FiShoppingCart } from "react-icons/fi"
 import NewCard from "../../Components/CardProduto/index";
 import ColorMode from "../../Components/ColorTheme";
-import { SlWallet } from "react-icons/sl";
-import { BiLogOut } from "react-icons/bi";
-import MenuSimple from "../../Components/Menu";
+import iconStore from "../../assets/imgs/store.png"
+import MenuSimple from "../../Components/MenuCarrinho";
+import { categoryFilter } from "../../utils/category";
 
 
 
 export default function HomePage() {
     const sidebar = useDisclosure();
     const context = useContext(GlobalContext)
-    const { produtos, isOpen } = context
+    const { produtos, isOpen, search, onChangeSearch, categorias, onChangeCategoria, brand, onChangeBrands } = context
     const NavItem = (props) => {
         const { icon, children, ...rest } = props;
 
-
+        console.log(categorias);
+        console.log(brand);
         return (
             <Flex
                 align="center"
@@ -30,8 +43,8 @@ export default function HomePage() {
                 cursor="pointer"
                 color="grey.700"
                 _hover={{
-                    bg: "blackAlpha.700",
-                    color: "grey.900",
+                    bg: "blackAlpha.100",
+                    color: "grey.300",
                 }}
                 role="group"
                 fontWeight="semibold"
@@ -66,7 +79,7 @@ export default function HomePage() {
             {...props}>
 
             <Flex px="4" py="5" align="center" >
-                <BiLogOut />
+                <Image src={iconStore} />
                 <Text
                     fontSize="2xl"
                     ml="2"
@@ -74,7 +87,7 @@ export default function HomePage() {
                     _dark={{
                         color: "whitesmoke",
                     }}
-                    fontWeight="semibold">
+                    fontWeight="bold">
                     House Store
                 </Text>
             </Flex>
@@ -89,38 +102,35 @@ export default function HomePage() {
                 aria-label="Main Navigation"
             >
 
-                <NavItem >
-                    <Input 
-                    _placeholder={{
-                        color:'grey.700'
-                    }}
-                     placeholder="Pesquisar  " />
-                </NavItem>
+
                 <NavItem>
 
-                    <Select placeholder="Marca"  > teste
-                        <option>teste</option>
-                        <option>te2ste</option>
-                        <option>teste</option>
-                        <option>tedsaste</option>
-                        <option>teste</option>
+                    <Select textTransform={'capitalize'} onChange={onChangeBrands}   >
+                        <option value={''}>Marcas</option>
+
+                        {produtos.map((item, index) => {
+                            return (
+                                <option key={index} > {item.brand}  </option>
+                            )
+                        })}
                     </Select>
 
                 </NavItem>
                 <NavItem icon={"HiCollection"}>
 
-                    <Select placeholder="Categorias"  > teste
-                        <option>teste</option>
-                        <option>te2ste</option>
-                        <option>teste</option>
-                        <option>tedsaste</option>
-                        <option>teste</option>
+                    <Select textTransform={'capitalize'} onChange={onChangeCategoria}  >
+                        <option value={''}>Categoria</option>
+
+                        {categoryFilter.map((cate, index) => {
+                            return (
+                                <option key={index} > {cate}  </option>
+                            )
+                        })}
                     </Select>
 
                 </NavItem>
-                <NavItem icon={'HiCode'}>Integrations</NavItem>
-                <NavItem icon={'AiFillGift'}>Changelog</NavItem>
-                <NavItem icon={'BsGearFill'}>Settings</NavItem>
+                <NavItem >Carrinho <FiShoppingCart size={'20px'} /> </NavItem>
+
             </Flex>
         </Box>
     );
@@ -145,6 +155,7 @@ export default function HomePage() {
                 <DrawerOverlay />
                 <DrawerContent>
                     <SidebarContent w="full" borderRight="none" />
+
                 </DrawerContent>
             </Drawer>
             <Box
@@ -166,7 +177,8 @@ export default function HomePage() {
                     }}
                     borderBottomWidth="1px"
                     borderColor="blackAlpha.300"
-                    h="14"
+                    h="20"
+
                 >
                     <IconButton
                         aria-label="Menu"
@@ -177,15 +189,14 @@ export default function HomePage() {
                         onClick={sidebar.onOpen}
                         icon={<FiMenu />}
                         size="sm"
+                        flexDir={['column', "", '']}
                     />
-                    <InputGroup
-                        w="70"
-                        m='0 auto'
-                        display={{
-                            base: "none",
-                            md: "flex",
-                        }}
 
+
+                    <InputGroup
+                        w="80"
+                        m='0 auto'
+                        display={['flex']}
                     >
                         <InputLeftElement
                             color="blackAlpha.800"
@@ -195,39 +206,47 @@ export default function HomePage() {
                         >
                             <FiSearch />
                         </InputLeftElement>
-                        <Input _dark={{
-                            bg: "blackAlpha.300",
-                            color: "white"
-                        }} placeholder="Pesquisar Produto " />
+                        <Input
+                            onChange={onChangeSearch}
+                            _dark={{
+                                bg: "blackAlpha.300",
+                                color: "white"
+                            }} placeholder="Pesquisar Produto " />
                     </InputGroup>
-                    <Flex w={'50%'} align='center'  >
+                    <Flex w={'50%'} display={['none', '']} align='center'  >
                         <Text as='b' fontSize={'xl'} > House Store</Text>
                     </Flex>
-                    <MenuSimple/>
+                    <MenuSimple />
                     <ColorMode />
                 </Flex>
 
-                    <Flex 
+                <Flex
                     py={3}
                     m='0 auto'
-                    w={'75vw'} 
-                    flexWrap='wrap' 
+                    w={'75vw'}
+                    flexWrap='wrap'
                     justifyContent={'center'}
-                     alignItems={'center'} >
+                    alignItems={'center'} >
                     <CaptionCarousel />
-                        {produtos
+                    {produtos.filter(((produto) => {
+                        return !produto ? produto : produto.brand === brand
+                    }))
+                        .filter(((produto) => {
+                            return !produto ? produto : produto.category === categorias
+                        }))
+                        .filter((produto) => {
+                            return !produto ? produto : produto.title.toLowerCase().includes(search.toLowerCase())
+                        }).map((produto) => {
+                            return (
+                                <Box key={produto.id}>
+                                    <NewCard
+                                        produto={produto} />
+                                </Box>
+                            )
+                        })}
+                    {isOpen && <ModalDetails />}
+                </Flex>
 
-                            .map((produto) => {
-                                return (
-                                    <Box key={produto.id}>
-                                        <NewCard
-                                            produto={produto} />
-                                    </Box>
-                                )
-                            })}
-                        {isOpen && <ModalDetails />}
-                    </Flex>
-               
             </Box>
         </Box>
     );

@@ -1,5 +1,5 @@
 import { CheckIcon } from "@chakra-ui/icons";
-import { Button, Flex, Image, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Spinner, Text, useToast } from "@chakra-ui/react";
+import { Button, Center, Divider, Flex, Image, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Spinner, Text, useColorModeValue } from "@chakra-ui/react";
 import { useContext, useState } from "react";
 import { BASE_URL } from "../../constants/Base_url";
 
@@ -17,7 +17,7 @@ export function ModalDetails() {
   return (
     <>
 
-      <Modal isCentered size={['sm', '5xl']} isOpen={isOpen} onClose={onClose}>
+      <Modal isCentered size={['sm', 'md', '5xl']} isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         {!data ?
           <Spinner />
@@ -26,40 +26,89 @@ export function ModalDetails() {
             <ModalHeader
               fontSize={['md', '2xl']}
               letterSpacing={2}
-              fontWeight='extrabold'
+              fontWeight='bold'
               align='center'>
               {data.title}
             </ModalHeader>
             <ModalCloseButton colorScheme={'red'} />
             <ModalBody shadow={'2xl'} >
-              <Text fontWeight='extrabold' textTransform={'capitalize'} >{data.category}</Text>
-              <Text fontWeight='extrabold' >{data.brand}</Text>
+
               <Flex
                 flexDir={['column', 'row']}
                 justifyContent={'space-between'}
                 px={2}
                 py={3}
                 alignItems='center'   >
-                <Image src={data.thumbnail} />
+                <Image w={['', '50%', '70%']} rounded="lg" src={data.thumbnail} />
 
                 <Flex
-                  h={['150px']}
-                  px={2}
+                  my={2}
+                  h={['','200px','270px']}
+                  px={['5px', '25px']}
                   justifyContent='space-between'
                   alignContent={'center'}
                   flexDir={'column'}>
+          
+                 
                   <Text
-                    fontWeight="bold"
-                    as="h4"
-                    lineHeight="tight"
-                    noOfLines={1}
+                    fontSize={{ base: '16px', lg: '18px' }}
+                    color={'yellow.600'}
+                    _dark={{
+                      color: 'yellow.300'
+                    }}
+                    fontWeight={'500'}
+                    textTransform={'uppercase'}
+                  >
+                    Categoria :  <Text fontWeight='semibold' color={'black'}  > {data.category}</Text>
+                  </Text>
+                  <Divider />
 
-                  >R$ {data.price},00</Text>
-                  <Text  >{data.description}</Text>
+                  <Text
+                    fontSize={{ base: '16px', lg: '18px' }}
+                    color={'yellow.600'}
+                    _dark={{
+                      color: 'yellow.300'
+                    }}
+                    fontWeight={'500'}
+                    textTransform={'uppercase'}
+                  >
+                    Marca :  <Text fontWeight='semibold' color={'black'} > {data.brand}</Text>
+
+                  </Text>
+                  <Divider />
+                  <Text
+                    fontSize={{ base: '16px', lg: '18px' }}
+                    color={'yellow.600'}
+                    _dark={{
+                      color: 'yellow.300'
+                    }}
+                    fontWeight={'500'}
+                    textTransform={'uppercase'}
+                  >
+                    Preço : <Text fontSize={'md'} color='black' >R$ {data.price},00</Text>
+                  </Text>
+
+                  <Divider />
+                  <Text
+                    fontSize={{ base: '16px', lg: '18px' }}
+                    color={'yellow.600'}
+                    _dark={{
+                      color: 'yellow.300'
+                    }}
+                    fontWeight={'500'}
+                    textTransform={'uppercase'}
+                  >
+                    Descrição
+                  </Text>
+                  <Text fontWeight={'semibold'} >{data.description}.</Text>
+                  <Divider />
+
                   <Button
+                    m={'0 auto'}
+                    mt={2}
                     alignSelf={'end'}
-                    w='50%'
-                    p={23}
+                    minW={['100', '200px', '50%']}
+                    p={[23, ]}
                     colorScheme={'whatsapp'}
                     onClick={() => {
                       addToCart(data)
