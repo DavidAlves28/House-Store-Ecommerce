@@ -1,4 +1,4 @@
-# House Store e-commerce
+# House Store e-commerce 🛒
 
 # **Projeto Pessoal 💻 **
  Fiz este projeto com intuito de fixar conceitos práticos e teóricos  que consumindo ao longo do bootcamp Labenu , pra mim é uma forma de me desenvolver como desenvolvedor e sempre estar praticando , buscando novas técnicas e fixando conteúdos. 
