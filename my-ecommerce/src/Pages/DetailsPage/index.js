@@ -116,7 +116,7 @@ export default function DetailsPage() {
               position: 'top',
               isClosable: true,
             })
-          }} > Add ao carrinho <Text fontSize={'xl'} m={2} >R$ {data.price.toFixed(2)}</Text> </Button>
+          }} > Add ao carrinho <Text fontSize={'xl'} m={2} >R$ {data.price},00</Text> </Button>
 
         <Flex
           justifyContent={'space-around'}
