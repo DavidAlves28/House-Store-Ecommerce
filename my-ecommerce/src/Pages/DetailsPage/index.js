@@ -51,14 +51,12 @@ export default function DetailsPage() {
         rounded={2}
         shadow='2xl'
         ml={['0px','', '300px']}
-        
         justifyContent='space-evenly'
         alignItems={'flex-start'}
         flexDir={['column', 'column', 'column']}
       >
         <Flex
           w='100%'
-
           justifyContent={'flex-start'}
           alignItems='center'
           gap={2}
@@ -118,7 +116,7 @@ export default function DetailsPage() {
               position: 'top',
               isClosable: true,
             })
-          }} > Add ao carrinho <Text fontSize={'xl'} m={2} >R$ {data.price},00</Text> </Button>
+          }} > Add ao carrinho <Text fontSize={'xl'} m={2} >R$ {data.price.toFixed(2)}</Text> </Button>
 
         <Flex
           justifyContent={'space-around'}
@@ -136,7 +134,7 @@ export default function DetailsPage() {
             fontWeight={'500'}
             textTransform={'uppercase'}
           >
-            Marca :  <Text fontWeight='semibold' color={'black'}  > {data.brand}</Text>
+            Marca :  <Text fontWeight='semibold' color={'black'} _dark={{color:'white'}} > {data.brand}</Text>
           </Box>
           <Divider />
 
@@ -152,7 +150,7 @@ export default function DetailsPage() {
             fontWeight={'500'}
             textTransform={'normal'}
           >
-            Categoria :  <Text fontWeight='semibold' color={'black'}  > {data.category}</Text>
+            Categoria :  <Text fontWeight='semibold' color={'black'} _dark={{color:'white'}}  > {data.category}</Text>
           </Box>
           <Divider />
           <Box
@@ -164,7 +162,7 @@ export default function DetailsPage() {
             fontWeight={'500'}
             textTransform={'capitalize'}
           >
-            Descrição :  <Text fontWeight='semibold' color={'black'}  > {data.description}</Text>
+            Descrição :  <Text fontWeight='semibold' color={'black'}  _dark={{color:'white'}} > {data.description}</Text>
           </Box>
 
         </Flex>
