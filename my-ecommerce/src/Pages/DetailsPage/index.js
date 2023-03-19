@@ -1,117 +1,189 @@
-import {
-    Box,
-    chakra,
-    Container,
-    Stack,
-    Text,
-    Image,
-    Flex,
-    VStack,
-    Button,
-    Heading,
-    SimpleGrid,
-    StackDivider,
-    useColorModeValue,
-    VisuallyHidden,
-    List,
-    ListItem,
-  } from '@chakra-ui/react';
-  import { FaInstagram, FaTwitter, FaYoutube } from 'react-icons/fa';
-  import { MdLocalShipping } from 'react-icons/md';
-  import { useParams } from "react-router-dom";
-import { BASE_URL } from '../../constants/Base_url';
-import { useRequestData } from '../../hooks/useRequestData';
+import { Box, Button, Divider, Flex, Heading, Image, Text } from "@chakra-ui/react"
+import { useContext } from "react"
+import { useParams } from "react-router-dom"
+import SideBarMenu from "../../Components/SideBarMenu"
+import { BASE_URL } from "../../constants/Base_url"
+import { GlobalContext } from "../../GlobalContext/GlobalContext"
+import { useRequestData } from "../../hooks/useRequestData"
+import { FaCartArrowDown } from "react-icons/fa";
+import { StarIcon } from "@chakra-ui/icons"
+import SideBarDetailsPage from "../../Components/SideBarMenu/sideBarDetailsPage"
+export default function DetailsPage() {
 
-  export default function Simple() {
-    
-    const {id} = useParams()
+  const { id } = useParams()
+  const context = useContext(GlobalContext)
+  const { addToCart, toast } = context
+  const [data] = useRequestData(`${BASE_URL}/products/${id}`, {})
 
-  const [data] = useRequestData(`${BASE_URL}/${id}`, {})
-    console.log(data);
+  const imagens = data.images && data.images.map((image) => {
     return (
-      <Container maxW={'7xl'}>
-        <SimpleGrid
-          columns={{ base: 1, lg: 2 }}
-          spacing={{ base: 8, md: 10 }}
-          py={{ base: 18, md: 24 }}>
-          <Flex>
-            <Image
-              rounded={'md'}
-              alt={'product image'}
-              src={data.thumbnail}
-              fit={'cover'}
-              align={'center'}
-              w={'100%'}
-              h={{ base: '100%', sm: '400px', lg: '500px' }}
-            />
-          </Flex>
-          <Stack spacing={{ base: 6, md: 10 }}>
-            <Box as={'header'}>
-              <Heading
-                lineHeight={1.1}
-                fontWeight={600}
-                fontSize={{ base: '2xl', sm: '4xl', lg: '5xl' }}>
-               {data.title}
-              </Heading>
-              <Text
-                color={useColorModeValue('gray.900', 'gray.400')}
-                fontWeight={300}
-                fontSize={'2xl'}>
-                R$ { data && data.price},00
-              </Text>
-            </Box>
-  
-            <Stack
-              spacing={{ base: 4, sm: 6 }}
-              direction={'column'}
-              divider={
-                <StackDivider
-                  borderColor={useColorModeValue('gray.200', 'gray.600')}
-                />
-              }>
-              <VStack spacing={{ base: 4, sm: 6 }}>
-                <Text
-                  color={useColorModeValue('gray.500', 'gray.400')}
-                  fontSize={'2xl'}
-                  fontWeight={'300'}>
-                 {data.description}
-                </Text>             
-              </VStack>
-              <Box>
-                <Text
-                  fontSize={{ base: '16px', lg: '18px' }}
-                  color={useColorModeValue('yellow.500', 'yellow.300')}
-                  fontWeight={'500'}
-                  textTransform={'uppercase'}
-                  mb={'4'}>
-                  Descrição
-                </Text>  {data.description}
-              </Box>            
-              
-            </Stack>
-  
-            <Button
-              rounded={'none'}
-              w={'full'}
-              mt={8}
-              size={'lg'}
-              py={'7'}
-              bg={useColorModeValue('gray.900', 'gray.50')}
-              color={useColorModeValue('white', 'gray.900')}
-              textTransform={'uppercase'}
-              _hover={{
-                transform: 'translateY(2px)',
-                boxShadow: 'lg',
-              }}>
-              Add to cart
-            </Button>
-  
-            <Stack direction="row" alignItems="center" justifyContent={'center'}>
-              <MdLocalShipping />
-              <Text>2-3 business days delivery</Text>
-            </Stack>
-          </Stack>
-        </SimpleGrid>
-      </Container>
-    );
-  }
+      <Box
+        w={['', '500px']}
+        key={image}
+        m={'2vh'}
+        minH='200px'>
+        <Image
+          rounded={'20px'}
+          w='100%'
+          src={image}
+          _hover={{
+            transform: 'scale(1.1)',
+            shadow: 'base'
+          }}
+        />
+      </Box>
+
+    )
+  })
+  return (
+    <Box
+      w='99vw'
+      m='0 auto'
+      minH='100vh'
+    >
+      <SideBarDetailsPage />
+      <Flex
+        w={['full', '', '70vw']}
+        minH='70vh'
+        p={3}
+        mt={['50px', '']}
+        rounded={2}
+        shadow='2xl'
+        ml={['0px','', '300px']}
+        
+        justifyContent='space-evenly'
+        alignItems={'flex-start'}
+        flexDir={['column', 'column', 'column']}
+      >
+        <Flex
+          w='100%'
+
+          justifyContent={'flex-start'}
+          alignItems='center'
+          gap={2}
+          p={2}
+        >
+
+          {Array(5)
+            .fill("")
+            .map((_, i) => (
+              <StarIcon
+                w=''
+                _hover={{
+                  transform: 'scale(1.1)',
+                  shadow: 'base'
+                }}
+                h='30px'
+                key={i}
+                color={i < data.rating ? "teal.500" : "gray.300"}
+              />
+            ))}
+
+          <Box as="span" ml="2" color="black.350" fontSize='xl'>
+            {data.rating}
+
+          </Box>
+        </Flex>
+
+
+        <Button
+          justifyContent={'center'}
+          mt={2}
+          h='8vh'
+          zIndex={1}
+          alignSelf={'flex-end'}
+          pos={['sticky', '']}
+          top={['9vh']}
+          leftIcon={<FaCartArrowDown size='30px' />}
+          minW={['full', '200px', '30%']}
+          p={[23,]}
+          shadow='2xl'
+          colorScheme={'facebook'}
+          fontSize={['xl']}
+          _hover={{
+            transform: 'translateY(-4px)',
+            color: "azure",
+            bg: 'cyan',
+            border: 'none',
+            shadow: 'base'
+          }}
+          onClick={() => {
+            addToCart(data)
+            toast({
+              title: `${data.title}`,
+              description: "Item adicionado ao carrinho",
+              status: 'success',
+              duration: 9000,
+              position: 'top',
+              isClosable: true,
+            })
+          }} > Add ao carrinho <Text fontSize={'xl'} m={2} >R$ {data.price},00</Text> </Button>
+
+        <Flex
+          justifyContent={'space-around'}
+          ml='40px'
+          flexDir={['column']}   >
+          <Heading p={2} size='2xl' >{data.title}</Heading>
+          <Divider />
+          <Box
+
+            fontSize={{ base: '30px', lg: '28px' }}
+            color={'yellow.600'}
+            _dark={{
+              color: 'yellow.300'
+            }}
+            fontWeight={'500'}
+            textTransform={'uppercase'}
+          >
+            Marca :  <Text fontWeight='semibold' color={'black'}  > {data.brand}</Text>
+          </Box>
+          <Divider />
+
+
+
+          <Divider />
+          <Box
+            fontSize={{ base: '30px', lg: '28px' }}
+            color={'yellow.600'}
+            _dark={{
+              color: 'yellow.300'
+            }}
+            fontWeight={'500'}
+            textTransform={'normal'}
+          >
+            Categoria :  <Text fontWeight='semibold' color={'black'}  > {data.category}</Text>
+          </Box>
+          <Divider />
+          <Box
+            fontSize={{ base: '30px', lg: '28px' }}
+            color={'yellow.600'}
+            _dark={{
+              color: 'yellow.300'
+            }}
+            fontWeight={'500'}
+            textTransform={'capitalize'}
+          >
+            Descrição :  <Text fontWeight='semibold' color={'black'}  > {data.description}</Text>
+          </Box>
+
+        </Flex>
+
+        <Flex
+          p={3}
+          m=' 0 auto'
+          w='100%'
+          gap='2%'
+          shadow={'lg'}
+          flexWrap='wrap'
+          flexDir={['column', 'row']}
+          justifyContent={'center'}
+        >
+
+          {imagens}
+        </Flex>
+
+      </Flex>
+
+    </Box>
+  )
+}

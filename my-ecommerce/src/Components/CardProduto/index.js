@@ -1,29 +1,21 @@
 import { StarIcon } from "@chakra-ui/icons";
-import { Badge, Box, Button, Flex, Heading, Image, Spinner, Text, useToast } from "@chakra-ui/react";
+import { Badge, Box, Button, Flex, Image, Spinner, Text } from "@chakra-ui/react";
 import { useContext } from "react";
-import { BsStar, BsStarFill, BsStarHalf } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import { GlobalContext } from "../../GlobalContext/GlobalContext";
 import { goToDetails } from "../../routes/coordinator";
 
 
+
 export default function NewCard(props) {
     const { produto } = props
     const context = useContext(GlobalContext)
-    const { addToCart, removeItemToCart, toast, details } = context
+    const { addToCart, toast } = context
+     const priceOld = produto.discountPercentage/100 * produto.price + produto.price
     const navigate = useNavigate()
-
-
-
-
-
-
-
-
     return (
         <Flex
             p={2}
-
             alignItems="center"
             justifyContent="center"
         >
@@ -32,17 +24,18 @@ export default function NewCard(props) {
                 _dark={{
                     bg: "gray.700",
                 }}
-
+                py={4}
+                px={2}
                 borderWidth="1px"
                 rounded="lg"
                 shadow="lg"
                 w="380px"
-                h="580px"
+                h="600px"
                 alignItems="center"
                 justifyContent="center"
             >
                 <Image
-                    h={'70%'}
+                    h={'65%'}
                     w="full"
                     overflow={'hidden'}
                     my={2}
@@ -50,27 +43,10 @@ export default function NewCard(props) {
                     alt={produto.title}
                 />
 
-                <Box w='100' p="6">
-                    <Box
-                        display="flex"
-                        gap={2}
-                        alignItems="center"
-                        justifyContent={'flex-start'} >
-                        <Badge rounded="full" px="2" colorScheme="teal">
-                            New
-                        </Badge>
-                        <Box
-                            color="gray.500"
-                            fontWeight="semibold"
-                            letterSpacing="wide"
-                            fontSize="md"
-                            textTransform="uppercase"
-                            textDecor={'line-through'}
-                        >
-                            {produto.discountPercentage}
-                        </Box>
-                        off &bull;
-                    </Box>
+                <Box w='100' h='100%' p="6">
+                    <Badge rounded="full" px="2" colorScheme="teal">
+                        New
+                    </Badge>
 
                     <Flex justifyContent='space-between'  >
                         <Text
@@ -82,13 +58,33 @@ export default function NewCard(props) {
                             h='full'>
                             {produto.title}
                         </Text>
-                        <Button onClick={() => details(produto.id)}>ver Detalhes</Button>
+                        <Button textDecor={'underline'} onClick={() => goToDetails(navigate,produto.id)}> Detalhes</Button>
 
 
                     </Flex>
+                    <Box
+                        display="flex"
+                        gap={2}
+                        alignItems="center"
+                        justifyContent={'flex-start'} >
+                        <Text as='b'  >
 
+                        De {priceOld.toFixed(2)}    
+                        </Text>
+                        <Box
+                            color="gray.500"
+                            fontWeight="semibold"
+                            letterSpacing="wide"
+                            fontSize="md"
+                            textTransform="uppercase"
+                            textDecor={'line-through'}
+                        >
+                        %    {produto.discountPercentage}
+                        </Box>
+                         &bull;
+                    </Box>
                     <Text as='b'  >
-                        R$ {produto.price.toFixed(2)}
+                     Por   R$ {produto.price.toFixed(2)}
                     </Text>
 
 

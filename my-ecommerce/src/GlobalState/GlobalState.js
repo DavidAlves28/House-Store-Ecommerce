@@ -1,40 +1,60 @@
 import { GlobalContext } from "../GlobalContext/GlobalContext";
-import { useEffect, useRef, useState } from "react";
-
+import { useEffect, useState } from "react";
 import { useDisclosure, useToast, } from "@chakra-ui/react";
 import axios from 'axios'
 import { BASE_URL } from "../constants/Base_url";
-export default function GlobalState(props) {
 
-    const [carrinho, setCarrinho] = useState([])
+export default function GlobalState(props) {
+    
+    //Estado para menu do carrinho
     const [carrinhoMenu, setCarrinhoMenu] = useState([])
+    //Estado para pesquisa 
     const [search, setSearch] = useState('')
+    // Estado para enviar informações (id) para modal detalhes utilizar no hook useRequestData()
     const [productAdd, setProductAdd] = useState('')
-    const [tipo, setTipo] = useState('')
-    const [infoDetails, setInfoDetails] = useState([])
+    // Estado para armazenar dados da APi
     const [produtos, setProdutos] = useState([])
 
+    //Estado para filter
+    const [categorias, setCategorias] = useState("")
+    const [brand, setBrand] = useState("")
+
+    const [valueMax, setValueMax] = useState(Infinity)
+
+    // funções do Modal!
     const { isOpen, onOpen, onClose, } = useDisclosure()
+    // toast usado para enviar mensagem 'item adicionado ao carrinho' na tela.
     const toast = useToast()
 
-
-    const onChangeTipo = (e) => {
-        setTipo(e.target.value)
+    // onChange para categoria,Search, Brands(marcas) e valor.
+    const onChangeCategoria = (e) => {
+        setCategorias(e.target.value)
     }
     const onChangeSearch = (e) => {
         setSearch(e.target.value)
     }
-    const getAllProducts = () =>{
-       
-        axios.get(`${BASE_URL}/products`)
-        .then((res)=>setProdutos(res.data.products))
-        .catch((err)=>console.log(err))
+    const onChangeBrands = (e) => {
+        setBrand(e.target.value)
     }
+    const onChangeValue = (e) => {
+        setValueMax(e.target.value)
+    }
+    const [isLoading, setIsLoading] = useState(true)
 
+    //API para renderizar produtos maximo 30! total 100!
+    const getAllProducts = async () => {
 
+        try {
+            const res = await axios.get(`${BASE_URL}/products?skip=0&limit=80`)
+            setProdutos(res.data.products)
+            setIsLoading(true)
 
-    //  lista do carrinho para não mostrar item duplicado
+        } catch (error) {
+            console.log('Erro ao buscar produto!');
+            setIsLoading(false)
 
+        }
+    }
     function addToCart(produto) {
         //filtra os produtos duplicados e aumenta quantidade      
         const newCarrinho = [...carrinhoMenu]
@@ -43,6 +63,7 @@ export default function GlobalState(props) {
         const newProduct = {
             id: produto.id,
             name: produto.title,
+            image: produto.thumbnail,
             price: Number(produto.price),
             quantidade: 1
         }
@@ -53,9 +74,9 @@ export default function GlobalState(props) {
         }
         // set estados para ser usados
         setCarrinhoMenu(newCarrinho)
-        setCarrinho(newCarrinho)
-  
-      
+        
+
+
         setTimeout(() => {
             onClose()
         }, 1000)
@@ -76,29 +97,28 @@ export default function GlobalState(props) {
             setCarrinhoMenu(filterCarrinho)
         }
     }
-
+    // retorna valor total do carrinho 
     const totalProdutos = carrinhoMenu.reduce((produto, nproduto) => {
         return produto + nproduto.quantidade * nproduto.price
     }, 0)
 
-    function details (id){
+
+    function details(id) {
         onOpen()
         setProductAdd(id)
     }
-   
-    
+
 
     useEffect(() => {
-       getAllProducts()
-       
+        getAllProducts()
     }, []);
 
 
     const context = {
-        carrinho,
+       
         carrinhoMenu,
-        tipo,
-        onChangeTipo,
+        categorias,
+        onChangeCategoria,
         addToCart,
         onChangeSearch,
         search,
@@ -107,10 +127,16 @@ export default function GlobalState(props) {
         onClose,
         productAdd,
         totalProdutos,
-        removeItemToCart,     
+        removeItemToCart,
         details,
         produtos,
-        toast
+        toast,
+        brand,
+        onChangeBrands,
+        getAllProducts,
+        onChangeValue,
+        valueMax,
+
     }
     return (
         <GlobalContext.Provider value={context}>

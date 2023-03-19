@@ -6,7 +6,7 @@ export const goToHome = (navigate) =>{
     navigate('/')
 } 
 export const goToCheckout = (navigate) =>{ 
-    navigate('/checkout')
+    navigate('/carrinho')
 }
 
 export const goToDetails = (navigate, id) => {
