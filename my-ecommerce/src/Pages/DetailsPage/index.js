@@ -44,13 +44,13 @@ export default function DetailsPage() {
     >
       <SideBarDetailsPage />
       <Flex
-        w={['full', '', '70vw']} 
+        w={['full', '', '70vw']}
         minH='70vh'
         p={3}
         mt={['50px', '']}
         rounded={2}
         shadow='2xl'
-        ml={['0px','', '300px']}
+        ml={['0px', '', '300px']}
         justifyContent='space-evenly'
         alignItems={'flex-start'}
         flexDir={['column', 'column', 'column']}
@@ -116,7 +116,7 @@ export default function DetailsPage() {
               position: 'top',
               isClosable: true,
             })
-          }} > Add ao carrinho <Text fontSize={'xl'} m={2} >R$ {data.price.toFixed(2)}</Text> </Button>
+          }} > Add ao carrinho <Text fontSize={'xl'} m={2} >R$ {data.price},00</Text> </Button>
 
         <Flex
           justifyContent={'space-around'}
@@ -125,7 +125,6 @@ export default function DetailsPage() {
           <Heading p={2} size='2xl' >{data.title}</Heading>
           <Divider />
           <Box
-
             fontSize={{ base: '30px', lg: '28px' }}
             color={'yellow.600'}
             _dark={{
@@ -134,12 +133,9 @@ export default function DetailsPage() {
             fontWeight={'500'}
             textTransform={'uppercase'}
           >
-            Marca :  <Text fontWeight='semibold' color={'black'} _dark={{color:'white'}} > {data.brand}</Text>
+            Marca :
+            <Text fontWeight='semibold' color={'black'} _dark={{ color: 'white' }} > {data.brand}</Text>
           </Box>
-          <Divider />
-
-
-
           <Divider />
           <Box
             fontSize={{ base: '30px', lg: '28px' }}
@@ -150,7 +146,10 @@ export default function DetailsPage() {
             fontWeight={'500'}
             textTransform={'normal'}
           >
-            Categoria :  <Text fontWeight='semibold' color={'black'} _dark={{color:'white'}}  > {data.category}</Text>
+            Categoria :
+            <Text fontWeight='semibold' color={'black'} _dark={{ color: 'white' }}  >
+              {data.category}
+            </Text>
           </Box>
           <Divider />
           <Box
@@ -162,11 +161,12 @@ export default function DetailsPage() {
             fontWeight={'500'}
             textTransform={'capitalize'}
           >
-            Descrição :  <Text fontWeight='semibold' color={'black'}  _dark={{color:'white'}} > {data.description}</Text>
+            Descrição :
+            <Text fontWeight='semibold' color={'black'} _dark={{ color: 'white' }} >
+              {data.description}
+            </Text>
           </Box>
-
         </Flex>
-
         <Flex
           p={3}
           m=' 0 auto'
@@ -177,12 +177,9 @@ export default function DetailsPage() {
           flexDir={['column', 'row']}
           justifyContent={'center'}
         >
-
           {imagens}
         </Flex>
-
-      </Flex>
-
+      </Flex> 
     </Box>
   )
 }
