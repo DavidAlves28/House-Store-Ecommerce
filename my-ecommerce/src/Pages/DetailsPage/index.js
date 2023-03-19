@@ -7,7 +7,7 @@ import { GlobalContext } from "../../GlobalContext/GlobalContext"
 import { useRequestData } from "../../hooks/useRequestData"
 import { FaCartArrowDown } from "react-icons/fa";
 import { StarIcon } from "@chakra-ui/icons"
-import SideBarDetailsPage from "../../Components/SideBarMenu/SideBarDetailsPage"
+import SideBarDetailsPage from "../../Components/SideBarMenu/sideBarDetailsPage"
 
 export default function DetailsPage() {
 
@@ -44,7 +44,7 @@ export default function DetailsPage() {
     >
       <SideBarDetailsPage />
       <Flex
-        w={['full', '', '70vw']}
+        w={['full', '', '70vw']} 
         minH='70vh'
         p={3}
         mt={['50px', '']}
