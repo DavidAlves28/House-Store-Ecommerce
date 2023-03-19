@@ -43,7 +43,7 @@ export default function MenuSimple() {
                 alignItems={'center'}
                 justifyContent={'space-between'}>
                 <Flex
-                    zIndex={3}
+                    zIndex={5}
                     w={"100%"}
                     gap='10px'
                     alignItems={'end'}
@@ -93,7 +93,7 @@ export default function MenuSimple() {
                                         bg={'ghostwhite'}
                                         h="full"
                                         mx={'15px'}
-                                        w={['90vw', '25vw']}
+                                        w={['90vw','50vw', '30vw']}
                                         justifyContent={'space-between'}
                                         alignItems='center'
                                         rounded={'lg'}
@@ -102,12 +102,12 @@ export default function MenuSimple() {
                                         }} 
                                         key={item.id}>
                                         <Flex
-                                            justifyContent={'space-between'}
+                                            justifyContent={'space-evenly'}
                                             alignItems='center'
                                             rounded='10px'
-                                            bg={'bisque'}
+                                            
                                             h={['3.5vh', '30px']}
-                                            w={['30vw', '50%', '30%']}
+                                            w={['30vw', '20vw', '30%']}
                                         >
                                             <Button
                                                 fontSize='sm'
@@ -136,7 +136,7 @@ export default function MenuSimple() {
                                             {item.name}
                                         </Text>
                                         <Text fontWeight={'semibold'}  _dark={{color:'black'}} >
-                                            R${item.price}
+                                            R${ item.price.toFixed(2)}
                                         </Text>
                                     </Flex>
                                 )

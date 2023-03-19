@@ -1,1 +1,0 @@
-export const categoryFilter = ["smartphones","fragrances","laptops","skincare","groceries","home-decoration"]

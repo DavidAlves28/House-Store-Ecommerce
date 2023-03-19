@@ -63,6 +63,7 @@ export default function GlobalState(props) {
         const newProduct = {
             id: produto.id,
             name: produto.title,
+            image: produto.thumbnail,
             price: Number(produto.price),
             quantidade: 1
         }

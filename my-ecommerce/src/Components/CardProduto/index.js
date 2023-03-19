@@ -3,15 +3,16 @@ import { Badge, Box, Button, Flex, Image, Spinner, Text } from "@chakra-ui/react
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { GlobalContext } from "../../GlobalContext/GlobalContext";
+import { goToDetails } from "../../routes/coordinator";
 
 
 
 export default function NewCard(props) {
     const { produto } = props
     const context = useContext(GlobalContext)
-    const { addToCart, toast, details } = context
+    const { addToCart, toast } = context
      const priceOld = produto.discountPercentage/100 * produto.price + produto.price
-
+    const navigate = useNavigate()
     return (
         <Flex
             p={2}
@@ -57,7 +58,7 @@ export default function NewCard(props) {
                             h='full'>
                             {produto.title}
                         </Text>
-                        <Button textDecor={'underline'} onClick={() => details(produto.id)}> Detalhes</Button>
+                        <Button textDecor={'underline'} onClick={() => goToDetails(navigate,produto.id)}> Detalhes</Button>
 
 
                     </Flex>
