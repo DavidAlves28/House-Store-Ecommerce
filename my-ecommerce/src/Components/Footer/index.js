@@ -7,13 +7,14 @@ import {
   useColorModeValue,
   VisuallyHidden,
 } from '@chakra-ui/react';
-import { FaInstagram, FaTwitter, FaYoutube } from 'react-icons/fa';
+import {FaLinkedin,FaGithub } from 'react-icons/fa';
 
 
 const SocialButton = ({
   children,
   label,
   href,
+ 
 }) => {
   return (
     <chakra.button
@@ -24,6 +25,7 @@ const SocialButton = ({
       cursor={'pointer'}
       as={'a'}
       href={href}
+      target={'_blank'}
       display={'inline-flex'}
       alignItems={'center'}
       justifyContent={'center'}
@@ -44,23 +46,23 @@ export default function FooterInfo () {
       color={useColorModeValue('gray.700', 'gray.200')}>
       <Container
         as={Stack}
-        w="full"
+        position={'absolute'}
+        bottom={0}
         py={4}
+        h={'7vh'}
         direction={{ base: 'column', md: 'row' }}
         spacing={4}
         justify={{ base: 'center', md: 'space-between' }}
         align={{ base: 'center', md: 'center' }}>
-        <Text>© 2022 Chakra Templates. All rights reserved</Text>
+        <Text as='b' > © 2023 David Alves Costa </Text>
         <Stack direction={'row'} spacing={6}>
-          <SocialButton label={'Twitter'} href={'#'}>
-            <FaTwitter />
+          <SocialButton label={'Github'} href='https://github.com/DavidAlves28'  >
+            <FaGithub />
           </SocialButton>
-          <SocialButton label={'YouTube'} href={'#'}>
-            <FaYoutube />
+          <SocialButton label={'Linkedin'} href="https://www.linkedin.com/in/david-alves-costa-7a2b90145/"  >
+            <FaLinkedin />
           </SocialButton>
-          <SocialButton label={'Instagram'} href={'#'}>
-            <FaInstagram />
-          </SocialButton>
+         
         </Stack>
       </Container>
     </Box>

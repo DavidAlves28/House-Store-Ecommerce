@@ -7,8 +7,8 @@ import {
     InputLeftElement,
     Text,
     useDisclosure,
-    DrawerOverlay,   
-    Image,   
+    DrawerOverlay,
+    Image,
 } from "@chakra-ui/react";
 import { useContext } from "react";
 import { GlobalContext } from "../../GlobalContext/GlobalContext";
@@ -18,19 +18,21 @@ import iconStore from "../../assets/imgs/store.png"
 import MenuSimple from "../MenuCarrinho";
 import { goToCarrinho, goToHome } from "../../routes/coordinator";
 import { useNavigate } from "react-router-dom";
+import { FaProductHunt } from "react-icons/fa";
+import FooterInfo from "../Footer/index";
 
 
 export default function SideBarDetailsPage() {
     // Context
     const context = useContext(GlobalContext)
-    const { onChangeSearch,} = context
+    const { onChangeSearch, carrinhoMenu} = context
 
-  
+
     const navigate = useNavigate()
     const sidebar = useDisclosure();
 
     //   para não mostrar item duplicado no filter de  categoria
-   
+
 
     const NavItem = (props) => {
         const { icon, children, ...rest } = props;
@@ -51,9 +53,7 @@ export default function SideBarDetailsPage() {
                 role="group"
                 fontWeight="semibold"
                 transition=".15s ease"
-                {...rest}
-            >
-
+                {...rest}>
                 {children}
             </Flex>
         );
@@ -61,7 +61,7 @@ export default function SideBarDetailsPage() {
 
 
     const SidebarContent = (props) => (
-  
+
         <Box
             as="nav"
             pos="fixed"
@@ -105,13 +105,16 @@ export default function SideBarDetailsPage() {
                     color: "whitesmoke",
                 }}
                 aria-label="Main Navigation">
-                <NavItem fontSize='lg' p={6} onClick={()=>goToHome(navigate)} >
-                Produtos
-                </NavItem>    
-                <NavItem p={6} onClick={() => goToCarrinho(navigate)} >Carrinho <FiShoppingCart size={'25px'} /> </NavItem>
+                <NavItem fontSize='lg' p={6} onClick={() => goToHome(navigate)} >
+                    Produtos <FaProductHunt size='25px' />
+                </NavItem>
+              
+                {carrinhoMenu.length >= 1 && <NavItem p={6} onClick={() => goToCarrinho(navigate)} >
+                Carrinho 
+                <FiShoppingCart size={'25px'} /> </NavItem> }
             </Box>
-                <ColorMode />
-     
+            <ColorMode />
+                <FooterInfo />
         </Box>
     );
 
@@ -119,10 +122,10 @@ export default function SideBarDetailsPage() {
         <>
             <Box
                 as="section"
-                bg="whiteAlpha.900"    
+                bg="whiteAlpha.900"
                 position={'sticky'}
-                top={'0px'}   
-                zIndex={2}         
+                top={'0px'}
+                zIndex={2}
             >
                 <SidebarContent
                     display={{
@@ -192,7 +195,7 @@ export default function SideBarDetailsPage() {
                             </InputLeftElement>
                             <Input
                                 w={['100%', '30vw']}
-                                h={ '4vh'}
+                                h={'4vh'}
                                 onChange={onChangeSearch}
                                 _dark={{
                                     bg: "blackAlpha.800",

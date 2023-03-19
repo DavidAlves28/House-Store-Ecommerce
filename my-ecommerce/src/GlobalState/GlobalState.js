@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { useDisclosure, useToast, } from "@chakra-ui/react";
 import axios from 'axios'
 import { BASE_URL } from "../constants/Base_url";
+import { goToHome } from "../routes/coordinator";
+
 
 export default function GlobalState(props) {
     
@@ -10,8 +12,7 @@ export default function GlobalState(props) {
     const [carrinhoMenu, setCarrinhoMenu] = useState([])
     //Estado para pesquisa 
     const [search, setSearch] = useState('')
-    // Estado para enviar informações (id) para modal detalhes utilizar no hook useRequestData()
-    const [productAdd, setProductAdd] = useState('')
+  
     // Estado para armazenar dados da APi
     const [produtos, setProdutos] = useState([])
 
@@ -39,22 +40,20 @@ export default function GlobalState(props) {
     const onChangeValue = (e) => {
         setValueMax(e.target.value)
     }
-    const [isLoading, setIsLoading] = useState(true)
+   
 
-    //API para renderizar produtos maximo 30! total 100!
+    //API para renderizar produtos maximo 80!
     const getAllProducts = async () => {
-
         try {
             const res = await axios.get(`${BASE_URL}/products?skip=0&limit=80`)
             setProdutos(res.data.products)
-            setIsLoading(true)
-
         } catch (error) {
-            console.log('Erro ao buscar produto!');
-            setIsLoading(false)
+            console.log('Erro ao buscar produto!');    
 
         }
     }
+   
+    // função para adiocionar produtos ao carrinho
     function addToCart(produto) {
         //filtra os produtos duplicados e aumenta quantidade      
         const newCarrinho = [...carrinhoMenu]
@@ -74,12 +73,6 @@ export default function GlobalState(props) {
         }
         // set estados para ser usados
         setCarrinhoMenu(newCarrinho)
-        
-
-
-        setTimeout(() => {
-            onClose()
-        }, 1000)
     }
 
     // função para remover item do carrinho e diminuir sua quantidade!
@@ -96,18 +89,29 @@ export default function GlobalState(props) {
             const filterCarrinho = newCarrinho.filter((item) => item.id !== produto.id)
             setCarrinhoMenu(filterCarrinho)
         }
+ 
+     
     }
+
     // retorna valor total do carrinho 
     const totalProdutos = carrinhoMenu.reduce((produto, nproduto) => {
         return produto + nproduto.quantidade * nproduto.price
     }, 0)
-
-
-    function details(id) {
+ 
+    // função de confirmação de compra.
+    // Abre Modal com mensagem de confirmação.
+    // Volta para página inicial,
+    // remove todos os itens do carrinho e fecha o modal.
+    function modalConfirm (navigate){
         onOpen()
-        setProductAdd(id)
+        setTimeout(() => {
+            goToHome(navigate)
+            carrinhoMenu.splice(0,carrinhoMenu.length)
+            onClose()
+        }, 3000)
+      
     }
-
+  
 
     useEffect(() => {
         getAllProducts()
@@ -124,11 +128,10 @@ export default function GlobalState(props) {
         search,
         isOpen,
         onOpen,
-        onClose,
-        productAdd,
+        onClose,        
         totalProdutos,
         removeItemToCart,
-        details,
+        modalConfirm,
         produtos,
         toast,
         brand,

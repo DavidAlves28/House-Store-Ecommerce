@@ -2,7 +2,7 @@
 import {
     Box,
     Flex,
-    Image,   
+    Image,
     Menu,
     MenuButton,
     Button,
@@ -10,29 +10,28 @@ import {
     MenuItem,
     MenuDivider,
     Text,
-
 } from '@chakra-ui/react';
 import { AddIcon, MinusIcon } from '@chakra-ui/icons';
 import { useContext } from 'react';
 import { GlobalContext } from '../../GlobalContext/GlobalContext';
-import { goToCarrinho, goToCheckout } from '../../routes/coordinator';
+import { goToCarrinho } from '../../routes/coordinator';
 import { useNavigate } from 'react-router-dom';
 import { SlWallet } from 'react-icons/sl'
 import shoppingFull from '../../assets/imgs/shopping-cart.png'
 
 
 
-
 export default function MenuSimple() {
 
     // Componente responsável por retornar carrinho atualizado.
-   
+
     const context = useContext(GlobalContext)
-    const {        
-        carrinhoMenu,       
+    const {
+        carrinhoMenu,
         addToCart,
         removeItemToCart,
         totalProdutos,
+        toast
     } = context
 
     const navigate = useNavigate()
@@ -50,7 +49,6 @@ export default function MenuSimple() {
                     justifyContent={'center'} >
                     <Menu >
                         <MenuButton
-                       
                             rounded={'full'}
                             variant={'link'}
                             cursor={'pointer'}
@@ -89,23 +87,19 @@ export default function MenuSimple() {
                             {carrinhoMenu && carrinhoMenu.map((item) => {
                                 return (
                                     <Flex
+                                        key={item.id}
                                         p='1%'
-                                        bg={'ghostwhite'}
                                         h="full"
                                         mx={'15px'}
-                                        w={['90vw','50vw', '30vw']}
+                                        w={['90vw', '50vw', '30vw']}
                                         justifyContent={'space-between'}
                                         alignItems='center'
                                         rounded={'lg'}
-                                        _dark={{
-                                            bg:"white"
-                                        }} 
-                                        key={item.id}>
+                                    >
                                         <Flex
                                             justifyContent={'space-evenly'}
                                             alignItems='center'
                                             rounded='10px'
-                                            
                                             h={['3.5vh', '30px']}
                                             w={['30vw', '20vw', '30%']}
                                         >
@@ -114,11 +108,12 @@ export default function MenuSimple() {
                                                 rounded={'10px'}
                                                 w='2px'
                                                 h='22px'
-                                                colorScheme={'whatsapp'}
+                                                color='green.500'
+                                                // colorScheme={'whatsapp'}
                                                 onClick={() => addToCart(item)}
                                             > <AddIcon />
                                             </Button>
-                                            <Text color={'black'} as="b">
+                                            <Text as="b">
                                                 {item.quantidade}x
                                             </Text>
                                             <Button
@@ -126,17 +121,28 @@ export default function MenuSimple() {
                                                 rounded={'10px'}
                                                 w='1vw'
                                                 h='22px'
-                                                colorScheme={'red'}
-                                                onClick={() => removeItemToCart(item)}
+                                                color='red'
+
+                                                onClick={() => {
+                                                    removeItemToCart(item)
+                                                    toast({
+                                                        title: ``,
+                                                        description: "Item removido do carrinho!",
+                                                        status: 'error',
+                                                        position: 'top',
+                                                        duration: 3000,
+                                                        isClosable: true,
+                                                    })
+                                                }}
                                             > <MinusIcon />
                                             </Button>
                                         </Flex>
 
-                                        <Text fontWeight={'semibold'} _dark={{color:'black'}} >
+                                        <Text fontWeight={'semibold'} >
                                             {item.name}
                                         </Text>
-                                        <Text fontWeight={'semibold'}  _dark={{color:'black'}} >
-                                            R${ item.price.toFixed(2)}
+                                        <Text fontWeight={'semibold'}   >
+                                            R$ {item.price.toFixed(2)}
                                         </Text>
                                     </Flex>
                                 )
@@ -154,12 +160,13 @@ export default function MenuSimple() {
                                     w={'full'}
                                     bg={'green.300'}
                                     as="b"
-                                    onClick={() => goToCheckout(navigate)}>
+                                    onClick={() => goToCarrinho(navigate)}>
                                     Finalizar Compra
                                 </Button>}
                         </MenuList>
                     </Menu>
                 </Flex>
+
             </Flex>
         </Box>
 
