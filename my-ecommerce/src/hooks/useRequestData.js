@@ -17,7 +17,7 @@ export function useRequestData(url, initialState) {
         } catch (error) {
             console.log('Erro ao buscar produto!');
             setIsLoading(false)
-
+            setError(true)
         }
     }
         useEffect(() => {

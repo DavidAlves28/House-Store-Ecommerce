@@ -15,7 +15,7 @@ export default function ColorMode(props) {
         _focus={{ boxShadow: 'none' }}
       
         {...props}>
-        {colorMode === 'light' ? <BsMoonStarsFill size='80%' /> : <BsSun size='80%' />}
+        {colorMode === 'light' ? <BsMoonStarsFill size='70%' /> : <BsSun size='70%' />}
       </Button>
     </Flex>
   );

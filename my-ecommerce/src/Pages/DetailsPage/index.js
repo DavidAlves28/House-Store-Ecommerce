@@ -1,13 +1,14 @@
 import { Box, Button, Divider, Flex, Heading, Image, Text } from "@chakra-ui/react"
 import { useContext } from "react"
 import { useParams } from "react-router-dom"
-import SideBarMenu from "../../Components/SideBarMenu"
+
 import { BASE_URL } from "../../constants/Base_url"
 import { GlobalContext } from "../../GlobalContext/GlobalContext"
 import { useRequestData } from "../../hooks/useRequestData"
 import { FaCartArrowDown } from "react-icons/fa";
 import { StarIcon } from "@chakra-ui/icons"
-import SideBarDetailsPage from "../../Components/SideBarMenu/sideBarDetailsPage"
+import SideBarDetailsPage from "../../Components/SideBarMenu/SideBarDetailsPage"
+
 export default function DetailsPage() {
 
   const { id } = useParams()

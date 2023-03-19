@@ -3,10 +3,9 @@ import { useContext } from "react";
 import CaptionCarousel from "../../Components/Carousel";
 import { GlobalContext } from "../../GlobalContext/GlobalContext";
 import NewCard from "../../Components/CardProduto/index";
-import { goToCarrinho } from "../../routes/coordinator";
-import { useNavigate } from "react-router-dom";
 import FooterInfo from "../../Components/Footer";
-import SideBarMenu from "../../Components/SideBarMenu";
+import SideBarMenu from "../../Components/SideBarMenu/SideBarFilters";
+
 
 export default function HomePage() {
     // Context
@@ -16,9 +15,9 @@ export default function HomePage() {
         categorias,
         brand,
         valueMax,
+      
     } = context
 
-    const navigate = useNavigate()
     return (
 
         <Box  
@@ -52,7 +51,8 @@ export default function HomePage() {
                         return produto === "" ? produto : produto.category.includes(categorias)
                     }))
                     .filter((produto) => {
-                        return !produto ? produto : produto.title.toLowerCase().includes(search.toLowerCase())
+                        return !produto ? produto : produto.title.toLowerCase().includes(search.toLowerCase()) || 
+                        produto.category.toLowerCase().includes(search.toLowerCase())  || produto.brand.toLowerCase().includes(search.toLowerCase())  
                     })
                     .map((produto) => {
                         return (

@@ -1,33 +1,30 @@
 import React  from 'react'
-
 import { useContext } from "react";
 import { GlobalContext } from "../../GlobalContext/GlobalContext";
 import { Box, Button, Divider, Flex, Heading, Image, Stack,  Text,  } from "@chakra-ui/react";
-
 import { useNavigate } from 'react-router-dom';
-
 import { SlWallet } from 'react-icons/sl';
 import { AddIcon, MinusIcon } from '@chakra-ui/icons';
 import { BASE_URL } from '../../constants/Base_url';
 import { useRequestData } from '../../hooks/useRequestData';
-import { FaCcMastercard, FaCcVisa } from 'react-icons/fa';
-
+import {  FaCcVisa } from 'react-icons/fa';
 import { goToHome } from '../../routes/coordinator';
+import ModalConfirmb from '../../Components/ModalConfirm';
 
 
 export default function CarrinhoPage() {
     const context = useContext(GlobalContext)
-    const { carrinhoMenu, totalProdutos, addToCart, removeItemToCart } = context;
+    const { carrinhoMenu, totalProdutos, addToCart, removeItemToCart ,modalConfirm,isOpen} = context;
 
     // alguns ids para retornar os dados de cadastro da api !
-    const userid = ['1', '2', '27', '50', '12', '21', '38']
+    const userid = ['1', '2', '27', '50', '12', '21', '55','38']
     // ira retornar um id aleatório para colocar no userRequestData
     const returnRandomIds = userid[Math.floor(Math.random() * userid.length)]
     //   hook usado para utilizar dados do usuário da API 
     const [data] = useRequestData(`${BASE_URL}/users/${returnRandomIds}`, {})
     const navigate = useNavigate()
 
-
+    
 
     return (
         <Box
@@ -153,7 +150,7 @@ export default function CarrinhoPage() {
                                         fontWeight={'bold'}
                                         color='blackAlpha.700'  ><Text > Platinum </Text>
                                         <Box gap={1} as={Flex}>
-                                            <FaCcMastercard size='2.3vw' />
+                                         
                                             <FaCcVisa size='2.3vw' />
                                         </Box>
                                     </Flex>
@@ -184,13 +181,13 @@ export default function CarrinhoPage() {
                                 </Box>
                                 <Divider />
                                 <Box pl='30px'  >
-                                    <Text color='facebook.300' mb={'-10px'} fontWeight='bold' > Idade </Text>
-                                    <Text p={2} textDecoration={'underline'} fontStyle='italic'  >  {data.age} </Text>
+                                    <Text color='facebook.300' mb={'-10px'} fontWeight='bold' > Endereço </Text>
+                                    <Text p={2} textDecoration={'underline'} fontStyle='italic'  >  {data.address?.address} </Text>
                                 </Box>
                                 <Divider />
                                 <Box pl='30px'  >
-                                    <Text color='facebook.300' mb={'-10px'} fontWeight='bold' > Genero</Text>
-                                    <Text p={2} textDecoration={'underline'} fontStyle='italic'  >  {data.gender} </Text>
+                                    <Text color='facebook.300' mb={'-10px'} fontWeight='bold' > Cidade</Text>
+                                    <Text p={2} textDecoration={'underline'} fontStyle='italic'  >  {data.address?.city} </Text>
                                 </Box>
                                 <Divider />
                                 <Box pl='30px'  >
@@ -234,7 +231,7 @@ export default function CarrinhoPage() {
                                             transform: 'translateY(-3px)',
                                             shadow: 'dark-lg',
                                         }}
-                                    // onClick={() => comprar(navigate)}
+                                    onClick={() => modalConfirm(navigate)}
                                     >
                                         Finalizar Compra
                                     </Button>}
@@ -251,8 +248,8 @@ export default function CarrinhoPage() {
                         Produtos </Button>
                 </Box>
             </Flex>
-
-
+            { isOpen && <ModalConfirmb />}
+                                           
         </Box>
     )
 }
