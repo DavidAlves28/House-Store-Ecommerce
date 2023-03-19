@@ -1,7 +1,7 @@
 # House Store e-commerce 🛒
 
 # **Projeto Pessoal 💻 **
- Fiz este projeto com intuito de fixar conceitos práticos e teóricos  que consumindo ao longo do bootcamp Labenu , pra mim é uma forma de me desenvolver como desenvolvedor e sempre estar praticando , buscando novas técnicas e fixando conteúdos. 
+ Fiz este projeto com intuito de fixar conceitos práticos e teóricos  que consumindo ao longo do bootcamp Labenu , pra mim é uma forma de me desenvolver como desenvolvedor e sempre estar praticando , buscando novas técnicas e fixando conteúdos.  Está 100 % responsivo , mas sofrerá mudanças futuramente.
  
  Conta com consumo de API   <a href='https://dummyjson.com/'> DummyJSON </a> , que contém  diversas informações como Produtos , Posts , Users , Comments  e outros. 
  Neste projeto foi utilizado os endpoints de Produtos , detalhes por meio do seu id, e Users para consumir dados como endereço ,nome,dados de cartão (fakes). 
@@ -20,8 +20,8 @@
 
 
 <a id="oprojeto"></a>
-# O Projeto  
-### Deploy : 
+# O Projeto   
+### Deploy : https://house-store-ecommerce.vercel.app/
 
 ### Instalação:
 #### Instalar pacotes e dependências 
@@ -125,7 +125,10 @@ npm run start
 	
 >  [Topo](#ancora)
 
-
+<a id="observações"></a>
+# Observações 
+- O projeto sefrerá mudanças, como  estocagem , quando adicionao ao carrinho terá quantidade máxima. 
+- Detalhes na responsivadade para ipad 
 
 #
 <a id="agradecimentos"></a>
