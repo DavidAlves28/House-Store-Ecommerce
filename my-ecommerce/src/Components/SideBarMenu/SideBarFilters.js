@@ -16,7 +16,7 @@ import {
 import { useContext } from "react";
 import { GlobalContext } from "../../GlobalContext/GlobalContext";
 import { FiMenu, FiSearch, FiShoppingCart } from "react-icons/fi"
-import ColorMode from "../ColorTheme";
+
 import iconStore from "../../assets/imgs/store.png"
 import MenuSimple from "../MenuCarrinho";
 import { goToCarrinho } from "../../routes/coordinator";
@@ -154,8 +154,6 @@ export default function SideBarMenu() {
                     </FormLabel>
                 </NavItem>
 
-
-
                 <Flex flexDir={'column-reverse'} >
                     <NavItem>
                         <Checkbox onChange={onChangeValue} value={30} > Até R$ 30</Checkbox>
@@ -182,7 +180,6 @@ export default function SideBarMenu() {
                 {carrinhoMenu.length >= 1 && <NavItem p={6} onClick={() => goToCarrinho(navigate)} >
                 Carrinho 
                 <FiShoppingCart size={'25px'} /> </NavItem> }
-                <ColorMode />
                 <FooterInfo/>
 
             </Box>

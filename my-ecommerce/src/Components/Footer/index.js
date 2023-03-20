@@ -8,6 +8,7 @@ import {
   VisuallyHidden,
 } from '@chakra-ui/react';
 import {FaLinkedin,FaGithub } from 'react-icons/fa';
+import ColorMode from '../ColorTheme';
 
 
 const SocialButton = ({
@@ -49,21 +50,22 @@ export default function FooterInfo () {
         position={'absolute'}
         bottom={0}
         py={4}
-        h={'7vh'}
+        h={'5vh'}
         direction={{ base: 'column', md: 'row' }}
         spacing={4}
         justify={{ base: 'center', md: 'space-between' }}
         align={{ base: 'center', md: 'center' }}>
-        <Text as='b' > © 2023 David Alves Costa </Text>
         <Stack direction={'row'} spacing={6}>
+        <ColorMode />
+
           <SocialButton label={'Github'} href='https://github.com/DavidAlves28'  >
             <FaGithub />
           </SocialButton>
           <SocialButton label={'Linkedin'} href="https://www.linkedin.com/in/david-alves-costa-7a2b90145/"  >
             <FaLinkedin />
           </SocialButton>
-         
         </Stack>
+        <Text as='b' > © 2023 David Alves Costa </Text>
       </Container>
     </Box>
   );
