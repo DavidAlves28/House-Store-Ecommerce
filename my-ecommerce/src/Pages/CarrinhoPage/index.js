@@ -27,10 +27,7 @@ export default function CarrinhoPage() {
     
 
     return (
-        <Box
-            w='100vw'
-        >
-            {/* <SideBarDetailsPage/> */}
+        <Box w='100vw'>
             <Flex
                 h='100%'
                 gap={3}
@@ -39,11 +36,12 @@ export default function CarrinhoPage() {
                 justifyContent={'center'}
                 alignItems='start'
                 m='0 auto'
-                p={5}   >
+                p={['','5px']}
+                  >
 
 
                 <Box
-
+                    mt={4}
                     overflow={'scroll'}
                     minW={['full', '30vw']}
                     h={['100vw', '80vh']}
@@ -93,7 +91,7 @@ export default function CarrinhoPage() {
                                             fontSize='sm'
                                             rounded={'10px'}
                                             w='2px'
-                                            h='22px'
+                                            h='32px'
                                             colorScheme={'whatsapp'}
                                             onClick={() => addToCart(item)}
                                         > <AddIcon />
@@ -105,7 +103,7 @@ export default function CarrinhoPage() {
                                             fontSize='sm'
                                             rounded={'10px'}
                                             w='1vw'
-                                            h='22px'
+                                            h='32px'
                                             colorScheme={'red'}
                                             onClick={() => removeItemToCart(item)}
                                         > <MinusIcon />
@@ -135,7 +133,7 @@ export default function CarrinhoPage() {
                     >
                         <Flex flexDir={'column'} >
                             <Stack as={Flex} justify='space-around' flexDir={["column", "row"]} >
-                                <Image w='180px' src={data.image} alt={data.firstName} />
+                                <Image w={'180px'} src={data.image} alt={data.firstName} />
                                 <Box
                                     rounded={'lg'}
                                     bg='grey'
@@ -151,7 +149,7 @@ export default function CarrinhoPage() {
                                         color='blackAlpha.700'  ><Text > Platinum </Text>
                                         <Box gap={1} as={Flex}>
                                          
-                                            <FaCcVisa size='2.3vw' />
+                                            <FaCcVisa size={'2.3vw'} />
                                         </Box>
                                     </Flex>
                                     <Text p={2} textShadow="1px 1px 1px " letterSpacing={1.5} fontSize='lg' color='blackAlpha.700'  > {data.bank?.cardNumber} </Text>
@@ -204,7 +202,7 @@ export default function CarrinhoPage() {
                             </Flex>
                             <Box as={Flex}
                                 position='sticky'
-                                bottom={'10px'}
+                                bottom={'30px'}
                                 h='10vh'
                                 w={['88vw', '80%']}
                                 m='0 auto'
@@ -241,11 +239,12 @@ export default function CarrinhoPage() {
                     </Flex>
                     <Button
                         pos={['absolute','static']}
-                        top={'0px'}
+                        top={'0px'} 
+                        left={'30px'}
                         colorScheme={'facebook'}
                         onClick={() => goToHome(navigate)}
-                        m={2} w={['50vw','30vw']} h='8vh' p={3} >
-                        Produtos </Button>
+                        m={2} w={['80vw','30vw']} h='8vh' p={3} >
+                        Voltar para Produtos </Button>
                 </Box>
             </Flex>
             { isOpen && <ModalConfirmb />}
