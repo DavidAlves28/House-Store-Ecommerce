@@ -61,7 +61,7 @@ export default function FooterInfo () {
           <SocialButton label={'Github'} href='https://github.com/DavidAlves28'  >
             <FaGithub />
           </SocialButton>
-          <SocialButton label={'Linkedin'} href="https://www.linkedin.com/in/david-alves-costa-7a2b90145/"  >
+          <SocialButton label={'Linkedin'} href="https://www.linkedin.com/in/david-dev-full/"  >
             <FaLinkedin />
           </SocialButton>
         </Stack>
